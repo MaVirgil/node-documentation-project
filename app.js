@@ -5,14 +5,22 @@ const app = express();
 app.use(express.static('public'));
 const publicPath = path.resolve('public');
 
-app.get('/health', (_, res) => {
+/***************
+ * PAGE ROUTES *
+ ***************/
+
+app.get('/', (req, res) => {
+  res.sendFile(publicPath + '/pages/frontpage/frontpage.html');
+});
+
+/**************
+ * API ROUTES *
+ **************/
+
+app.get('/api/health', (req, res) => {
   res.send({
     data: 'OK',
   });
-});
-
-app.get('/', (_, res) => {
-  res.sendFile(publicPath + '/pages/frontpage/frontpage.html');
 });
 
 app.listen(8080, (error) => {
