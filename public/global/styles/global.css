@@ -1,0 +1,16 @@
+@font-face {
+  font-family: libron;
+  src: url('/global/assets/fonts/Libron-Regular.woff2');
+}
+
+@font-face {
+  font-family: libron;
+  src: url('/global/assets/fonts/Libron-Bold.woff2');
+  font-weight: bold;
+}
+
+/* TODO: add italic version of custom font */
+
+html {
+  font-family: libron;
+}
