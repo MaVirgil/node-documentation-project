@@ -1,10 +1,18 @@
 import express from 'express';
-const app = express();
+import path from 'path';
 
-app.get('/health', (req, res) => {
+const app = express();
+app.use(express.static('public'));
+const publicPath = path.resolve('public');
+
+app.get('/health', (_, res) => {
   res.send({
-    data: 'OK'
+    data: 'OK',
   });
+});
+
+app.get('/', (_, res) => {
+  res.sendFile(publicPath + '/pages/frontpage/frontpage.html');
 });
 
 app.listen(8080, (error) => {
@@ -14,4 +22,4 @@ app.listen(8080, (error) => {
   }
 
   console.log('Server listening on port ', 8080);
-})
+});
