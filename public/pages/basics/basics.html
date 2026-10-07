@@ -6,7 +6,9 @@
   <link rel="icon" type="image/png" sizes="32x32" href="/global/images/favicon-32x32.png">
   <link rel="stylesheet" href="/global/styles/main.css"/>
   <link rel="stylesheet" href="/pages/frontpage/style/frontpage.css"/>
+  <link rel="stylesheet" href="/global/styles/prism.css"/>
   <script src="/global/scripts/test.js" defer></script>
+  <script src="/global/scripts/prism.js"></script>
   <title>Node So Far | Basics</title>
 </head>
 
@@ -17,10 +19,36 @@
   </div>
 
   <main>
-    <h2>Basics of Node.JS</h2>
-    <article>
-      <p>These are the basics of JavaScript and node.JS</p>
-    </article>
+
+    <h3 id="contents">contents</h3>
+    <ul>
+      <li><a href="#what-is-nodejs">what Is Node.js</a></li>
+      <li><a href="#the-npm-package-manager">The NPM package manager</a></li>
+    </ul>
+
+    <hr>
+
+    <h3 id="what-is-node-js">What is node.js</h3>
+    <p>Node.js is a JavaScript runtime that runs outside of the web browser,
+      enabling the development of server-side JavaScript applications.</p>
+    <p>While Node.js does come with a standard library of functionalities
+      (which includes modules like <code>fs</code> for interacting with the file system, and <code>path</code> for working
+      with file and directory paths), it is important to keep in mind that Node.js is just the tool that allows the
+      developer to develop, build and run JavaScript applications outside of a browser environment, and not a coding
+      language in itself.</p>
+
+    <h3 id="the-npm-package-manager">The NPM package manager</h3>
+    <p>Node.js comes with a package manager called the &#39;node package-manager&#39; (or npm for short), which is used
+      for managing and installing dependencies, as well as publishing your own packages. Dependencies declared with
+      <code>npm</code> live in the <code>package.json</code> file at the root-directory of the project, and can be
+      installed with the command <code>npm install</code>. Declaring and installing a new dependency with <code>npm</code>
+      is done with the command <code>npm install &lt;package-name&gt;</code>. It is also possible to initialize a new
+      Node.js project with the command <code>npm init</code>.</p>
+    <p>The <code>package.json</code> file can contain metadata about the project (e.g. versioning information), run scripts, as well as
+      a declaration of dependencies. A <code>package.json</code> file for a very simple web-server using the Express.js
+      library might look like this:</p>
+  
+    <pre data-src="/pages/basics/code-snippets/example-json.json" class="language-javascript"><code></code></pre>
   </main>
 
 </body>

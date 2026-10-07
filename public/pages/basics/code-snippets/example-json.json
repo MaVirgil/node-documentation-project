@@ -1,0 +1,12 @@
+{
+  "name": "Simple Server",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "run": "node app.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1"
+  }
+}
