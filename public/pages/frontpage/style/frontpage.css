@@ -24,4 +24,5 @@
   outline-width: 1px;
   outline-style: groove;
   outline-color: var(--primary-color);
+  color: var(--text-color)
 }

@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
   res.sendFile(publicPath + '/pages/frontpage/frontpage.html');
 });
 
+app.get('/basics', (req, res) => {
+  res.sendFile(publicPath + '/pages/basics/basics.html');
+});
+
 /**************
  * API ROUTES *
  **************/

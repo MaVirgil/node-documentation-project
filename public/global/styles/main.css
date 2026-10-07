@@ -70,3 +70,16 @@ body {
 main {
   margin-top: var(--gap-large)
 }
+
+a {
+  color: var(--text-color);
+  text-decoration-color: var(--primary-color);
+  text-decoration-thickness: 2px;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 0.3em;
+  cursor: pointer;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
