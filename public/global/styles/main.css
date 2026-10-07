@@ -5,24 +5,24 @@
 
 @font-face {
   font-family: libron;
-  src: url('/global/fonts/Libron-Regular.woff2');
+  src: url('/global/fonts/Libron-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: libron;
-  src: url('/global/fonts/Libron-Bold.woff2');
+  src: url('/global/fonts/Libron-Bold.woff2') format('woff2');
   font-weight: bold;
 }
 
 @font-face {
   font-family: libron;
-  src: url('/global/fonts/Libron-Italic.woff2');
+  src: url('/global/fonts/Libron-Italic.woff2') format('woff2');
   font-style: italic;
 }
 
 @font-face {
   font-family: libron;
-  src: url('/global/fonts/Libron-BoldItalic.woff2');
+  src: url('/global/fonts/Libron-BoldItalic.woff2') format('woff2');
   font-weight: bold;
   font-style: italic;
 }
@@ -33,9 +33,14 @@
 
 :root {
   --bg-color: oklch(0.19 0.005 71);
+  --bg-element-color: oklch(0.25 0.005 71);
   --text-color: oklch(0.96 0.07 69);
+  --text-color-muted: oklch(0.76 0.07 69);
+  --primary-color: oklch(0.681 0.1586 47.54);
   --rounding: 18px;
   --edge-padding: 2em;
+  --element-padding-vertical: 0.5em;
+  --element-padding-horizontal: 1em;
   --gap-tiny: 0.5em;
   --gap-small: 2em;
   --gap-medium: 4em;
