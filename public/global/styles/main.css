@@ -64,7 +64,7 @@ html {
 body {
   margin: auto;
   padding: 0 var(--edge-padding) 6em;
-  max-width: 500px;
+  max-width: 750px;
 }
 
 main {
