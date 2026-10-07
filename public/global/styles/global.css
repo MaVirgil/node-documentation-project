@@ -1,11 +1,11 @@
 @font-face {
   font-family: libron;
-  src: url('/global/assets/fonts/Libron-Regular.woff2');
+  src: url('/global/fonts/Libron-Regular.woff2');
 }
 
 @font-face {
   font-family: libron;
-  src: url('/global/assets/fonts/Libron-Bold.woff2');
+  src: url('/global/fonts/Libron-Bold.woff2');
   font-weight: bold;
 }
 
