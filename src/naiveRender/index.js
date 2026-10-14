@@ -12,7 +12,14 @@ import { sanitizeXSS } from "./util/sanitizer.js";
  */
 
 const fromTemplate = (path) => {
-  const htmlString = fileReader.readFromFile(path);
+  let htmlString;
+
+  try {
+    htmlString = fileReader.readFromFile(path);
+  } catch(e) {
+    throw new Error(`fromTemplate(): ${e.message}`);
+  }
+
   return createPage(htmlString);
 };
 
@@ -42,11 +49,14 @@ function createPage(htmlString = null) {
 
 function withFragment(baseHtml, fragmentPath, fragmentKey) {
 
-  //TODO: input validation and error handling
-
-  const contentToInsert = fileReader.readFromFile(fragmentPath);
-
-  const newContent = renderer.insertAtPlaceholder(baseHtml, contentToInsert, fragmentKey);
+  let newContent; 
+  
+  try {
+    let contentToInsert = fileReader.readFromFile(fragmentPath);
+    newContent = renderer.insertAtPlaceholder(baseHtml, contentToInsert, fragmentKey);
+  } catch(e) {
+    throw new Error(`withFragment(): ${e.message}`);
+  }
 
   return createPage(newContent);
 }
@@ -58,9 +68,13 @@ function withProps(baseHtml, props = null) {
 
   let result = baseHtml;
 
-  Object.entries(props).forEach(([key, value]) => {
-    result = renderer.insertAtPlaceholder(result, sanitizeXSS(value), key);
-  });
+  try {
+    Object.entries(props).forEach(([key, value]) => {
+      result = renderer.insertAtPlaceholder(result, sanitizeXSS(value), key);
+    });
+  } catch(e) {
+    throw new Error(`withProps(): ${e.message}`);
+  }
 
   return createPage(result);
 }

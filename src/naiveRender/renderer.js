@@ -10,7 +10,10 @@ function insertAtPlaceholder(htmlString, value, placeholder) {
   const toInsert = String(value);
   const target = PLACEHOLDER_SYNTAX_START + placeholder + PLACEHOLDER_SYNTAX_END;
 
-  //TODO: throw if placeholder is not found
+  if (!htmlString.includes(target)) {
+    throw new Error(`No placeholder key with value "${target}" found`);
+  }
+
   const result = htmlString.replace(target, toInsert);
 
   return result;
