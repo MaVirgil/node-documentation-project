@@ -1,5 +1,6 @@
 import fileReader from './util/fileReader.js';
 import renderer from './renderer.js';
+import { sanitizeXSS } from "./util/sanitizer.js";
 
 /**
  * @typedef {Object} page A page object
@@ -29,7 +30,7 @@ function createPage(htmlString = null) {
       if (props) {
         toReturn = withProps(html, props).render();
       }
-      
+
       return stripUnusedPlaceholders(toReturn);
     },
     withFragment: (fragmentPath, placeholderKey) => withFragment(html, fragmentPath, placeholderKey),
@@ -58,7 +59,7 @@ function withProps(baseHtml, props = null) {
   let result = baseHtml;
 
   Object.entries(props).forEach(([key, value]) => {
-    result = renderer.insertAtPlaceholder(result, value, key);
+    result = renderer.insertAtPlaceholder(result, sanitizeXSS(value), key);
   });
 
   return createPage(result);
