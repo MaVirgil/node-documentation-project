@@ -1,25 +1,29 @@
 import fileReader from './util/fileReader.js';
 import renderer from './renderer.js';
 
-//TODO: add documentation to object methods
-
 /**
- * Creates a new page object from a base HTML file
- * @param {String} Path The relative path to the HTML file
- * @returns {Object} The new page object
+ * @typedef {Object} page A page object
+ * @property {function(): String} render Returns the page object's HTML as a string
+ * @property {function(String, String): page} withFragment Adds an HTML-fragment to the page object's HTML string. Returns a new ``page`` object
+ * @property {function(Object): page} withProps Adds any amount of props to the HTML of the page object. Returns a new ``page`` object
+ * @property {function(String): page} withStylesheet Adds a stylesheet relation to the head of the page object's HTML. Returns a new ``page`` object
+ * @property {function(String, Object): page} withScript Adds a script to the head of the page object's HTML. Returns a new ``page`` object
  */
+
 const fromTemplate = (path) => {
   //read file at path and parse into string:
   const htmlString = fileReader.readFromFile(path);
   return createPage(htmlString);
 };
 
+/**
+ * @returns {page}
+ */
 function createPage(htmlString = null) {
 
   const html = htmlString || '';
 
   return {
-    //TODO: make render function strip all remaining placeholders from html
     render: () => html,
     withFragment: (fragmentPath, placeholderKey) => withFragment(html, fragmentPath, placeholderKey),
     withProps: (props) => withProps(html, props),
