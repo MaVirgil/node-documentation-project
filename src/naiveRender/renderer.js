@@ -1,11 +1,10 @@
-import config from './naive.config.json' with { type: 'json' };
+import { config } from "./util/configLoader.js";
 
-const syntaxArr = config?.syntax?.split(' ') || ['{{', '}}'];
+const DEFAULT_SCRIPT_DEFER = config.scriptDeferDefault;
 
-const DEFAULT_SCRIPT_DEFER = config?.['script-defer-default'] ?? true;
+const syntaxArr = config.syntax.split(' ');
 const PLACEHOLDER_SYNTAX_START = syntaxArr[0];
 const PLACEHOLDER_SYNTAX_END = syntaxArr[1];
-
 
 function insertAtPlaceholder(htmlString, value, placeholder) {
   //TODO: sanitize value before inserting into html
