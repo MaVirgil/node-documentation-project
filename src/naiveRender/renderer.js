@@ -11,6 +11,8 @@ function insertAtPlaceholder(htmlString, value, placeholder) {
   //TODO: sanitize value before inserting into html
   const toInsert = String(value);
   const target = PLACEHOLDER_SYNTAX_START + placeholder + PLACEHOLDER_SYNTAX_END;
+
+  //TODO: throw if placeholder is not found
   const result = htmlString.replace(target, toInsert);
 
   return result;

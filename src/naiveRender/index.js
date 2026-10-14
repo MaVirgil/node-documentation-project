@@ -1,6 +1,8 @@
 import fileReader from './util/fileReader.js';
 import renderer from './renderer.js';
 
+//TODO: add documentation to object methods
+
 /**
  * Creates an empty page object
  * @returns {Object} An empty page object
@@ -25,6 +27,7 @@ function createPage(htmlString = null) {
   const html = htmlString || '';
 
   return {
+    //TODO: make render function strip all remaining placeholders from html
     render: () => html,
     withFragment: (fragmentPath, placeholderKey) => withFragment(html, fragmentPath, placeholderKey),
     withProps: (props) => withProps(html, props),
@@ -37,13 +40,10 @@ function withFragment(baseHtml, fragmentPath, fragmentKey) {
 
   //TODO: input validation and error handling
 
-  //get content html file from filesystem (should probably be an absolute path)
   const contentToInsert = fileReader.readFromFile(fragmentPath);
 
-  //parse page content and replace {{content}} tag with content HTML without mutating page directly
   const newContent = renderer.insertAtPlaceholder(baseHtml, contentToInsert, fragmentKey);
 
-  //return result as an object
   return createPage(newContent);
 }
 
@@ -75,16 +75,3 @@ export default {
   newPage,
   fromTemplate
 };
-
-//how the renderer should work approx.
-// I want to be able to do something like this when I build a page from a template:
-/*
-const frontPage = renderer.fromTemplate('./pages/templates/base.html')
-  .withContent('./pages/content/frontPage.html');
-
-//serve the page:
-
-app.get('/', (req, res) => {
-  res.send(frontPage.withProps({title: 'front page'}))  
-});
-*/
