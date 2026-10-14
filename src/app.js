@@ -1,12 +1,25 @@
 import express from 'express';
 import 'dotenv/config';
-import path from 'path';
+import path from 'node:path';
+import naiveRender from './naiveRender/index.js';
 
 const app = express();
 app.use(express.static('public'));
 
-const publicPath = path.resolve('public');
 const PORT = process.env.PORT || 8080;
+
+const publicPath = path.resolve('public');
+const pagesPath = path.resolve('src/pages');
+
+const testPage = naiveRender.fromTemplate(`${pagesPath}/templates/base.html`)
+  .withFragment(`${pagesPath}/content/frontpage.html`, 'content')
+  .withProps({
+    title: "Node Project"
+  })
+  .withStylesheet('/pages/frontpage/style/frontpage.css')
+  .withScript('/global/scripts/test2.js', {
+    defer: false,
+  });
 
 
 /***************
@@ -14,7 +27,7 @@ const PORT = process.env.PORT || 8080;
  ***************/
 
 app.get('/', (req, res) => {
-  res.sendFile(publicPath + '/pages/frontpage/frontpage.html');
+  res.send(testPage.render());
 });
 
 app.get('/basics', (req, res) => {
