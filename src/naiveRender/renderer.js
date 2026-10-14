@@ -38,6 +38,7 @@ function insertIntoHead(htmlString, insertString) {
 }
 
 function stripUnusedPlaceholders(htmlString) {
+  //apparently this regex expression is super slow ("super-linear perfomance" according to sonarQube), consider fixing in the future
   const result = htmlString.replace(/\{\{[^}]*\}\}/g, '');
 
   return result;
