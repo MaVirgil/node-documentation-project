@@ -7,7 +7,6 @@ const PLACEHOLDER_SYNTAX_START = syntaxArr[0];
 const PLACEHOLDER_SYNTAX_END = syntaxArr[1];
 
 function insertAtPlaceholder(htmlString, value, placeholder) {
-  //TODO: sanitize value before inserting into html
   const toInsert = String(value);
   const target = PLACEHOLDER_SYNTAX_START + placeholder + PLACEHOLDER_SYNTAX_END;
 
