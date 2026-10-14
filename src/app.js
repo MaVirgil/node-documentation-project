@@ -7,6 +7,8 @@ app.use(express.static('public'));
 
 const PORT = process.env.PORT || 8080;
 
+//TODO: move routes into seperate module
+
 /***************
  * PAGE ROUTES *
  ***************/
