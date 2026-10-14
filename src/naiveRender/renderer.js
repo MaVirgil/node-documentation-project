@@ -38,8 +38,15 @@ function insertIntoHead(htmlString, insertString) {
   return htmlString.replace('</head>', toInsert);
 }
 
+function stripUnusedPlaceholders(htmlString) {
+  const result = htmlString.replace(/\{\{[^}]*\}\}/g, '');
+
+  return result;
+}
+
 export default {
   insertAtPlaceholder,
   insertStylesheet,
   insertScript,
+  stripUnusedPlaceholders,
 };
