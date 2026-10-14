@@ -1,30 +1,16 @@
 import express from 'express';
 import 'dotenv/config';
-import { pages } from './pageBuilder.js';
+import pageRouter from './routes/pages.route.js';
 
 const app = express();
 app.use(express.static('public'));
 
-const PORT = process.env.PORT || 8080;
+const PORT = Number(process.env.PORT) || 8080;
 
-//TODO: move routes into seperate module
+// Page routes
+app.use('/', pageRouter);
 
-/***************
- * PAGE ROUTES *
- ***************/
-
-app.get('/', (req, res) => {
-  res.send(pages.frontPage.render());
-});
-
-app.get('/basics', (req, res) => {
-  res.send(pages.basics.render());
-});
-
-/**************
- * API ROUTES *
- **************/
-
+// API routes (move these to own router if more routes are added in future)
 app.get('/api/health', (req, res) => {
   res.send({
     data: 'OK',
@@ -37,5 +23,5 @@ app.listen(PORT, (error) => {
     return;
   }
 
-  console.log('Server listening on port', Number(PORT));
+  console.log('Server listening on port', PORT);
 });
