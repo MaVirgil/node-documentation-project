@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/basics', (req, res) => {
-  res.send(pages.basics.render());
+  res.send(pages.nodeBasics.render());
 });
 
 export default router;

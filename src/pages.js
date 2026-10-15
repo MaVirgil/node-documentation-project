@@ -21,7 +21,7 @@ const frontPage = baseTemplate
     title: 'Node So Far',
   });
 
-const basics = proseTemplate
+const nodeBasics = proseTemplate
   .withFragment(`${pagesPath}/fragments/node-basics.html`, 'content')
   .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
@@ -30,5 +30,5 @@ const basics = proseTemplate
 
 export const pages = {
   frontPage,
-  basics,
+  nodeBasics,
 };
