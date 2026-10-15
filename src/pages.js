@@ -17,16 +17,16 @@ const frontPage = baseTemplate
   .withFragment(`${pagesPath}/fragments/frontpage.html`, 'content')
   .withStylesheet('/pages/frontpage/style/frontpage.css')
   .withProps({
-    title: "Node So Far"
+    title: 'Node So Far',
   });
 
 const basics = proseTemplate
   .withFragment(`${pagesPath}/fragments/basics.html`, 'content')
   .withProps({
-    title: "Node So Far | basics"
+    title: 'Node So Far | basics',
   });
 
 export const pages = {
   frontPage,
   basics,
-}
+};
