@@ -1,5 +1,5 @@
 import express from 'express';
-import { pages } from '../pageBuilder.js';
+import { pages } from '../pages.js';
 
 const router = express.Router();
 
