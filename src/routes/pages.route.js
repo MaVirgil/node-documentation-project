@@ -11,4 +11,8 @@ router.get('/basics', (req, res) => {
   res.send(pages.nodeBasics.render());
 });
 
+router.get('/javascript-introduction', (req, res) => {
+  res.send(pages.javascriptIntro.render())
+});
+
 export default router;

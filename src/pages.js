@@ -28,7 +28,15 @@ const nodeBasics = proseTemplate
     title: 'Node So Far | basics',
   });
 
+const javascriptIntro = proseTemplate
+  .withFragment(`${pagesPath}/fragments/javascript-introduction.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Javascript Introduction',
+  });
+
 export const pages = {
   frontPage,
   nodeBasics,
+  javascriptIntro,
 };
