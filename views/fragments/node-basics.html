@@ -1,0 +1,76 @@
+<main>
+
+  {!{backButton}!}
+
+  <div class="contents-container">
+    <h3 class="contents-header">contents</h3>
+    <ul class="contents-list">
+      <li class="contents-list-item"><a href="#what-is-nodejs">what Is Node.js</a></li>
+      <li class="contents-list-item"><a href="#the-npm-package-manager">The NPM package manager</a></li>
+      <li class="contents-list-item"><a href="#using-node-packages">Using node packages</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <section class="prose">
+    <h3 id="what-is-node-js">What is node.js?</h3>
+    <p>Node.js is a JavaScript runtime that runs outside of the web browser,
+      enabling the development of server-side JavaScript applications.</p>
+    <p>While Node.js does come with a standard library of functionalities
+      (which includes modules like <code>fs</code> for interacting with the file system, and <code>path</code> for working
+      with file and directory paths), it is important to keep in mind that Node.js is just the tool that allows the
+      developer to develop, build and run JavaScript applications outside of a browser environment - you're still just writing
+      JavaScript code.</p>
+  </section>
+
+  <section class="prose">
+    <h3 id="the-npm-package-manager">The NPM package manager</h3>
+    <p>Node.js comes with a package manager aptly called the &#39;node package-manager&#39; (or npm for short), which is used
+      for managing and installing dependencies, as well as publishing your own packages. Dependencies declared with
+      the node package-manager live in the <code>package.json</code> file at the root-directory of the project, and can be
+      installed with the command <code>npm install</code>. Declaring and installing a new dependency
+      is done with the command <code>npm install &lt;package-name&gt;</code>. It is also possible to initialize a new
+      Node.js project with the command <code>npm init</code>.</p>
+    <p>The <code>package.json</code> file can contain metadata about the project (e.g. versioning information), run scripts, as well as
+      a declaration of dependencies. Much of this metadate is mostly relevant if you wish to publish your code as a node package
+      , and can therefore be omitted. A <code>package.json</code> file for a very simple web-server using the Express.js
+      library might look like this:</p>
+    <pre data-src="/pages/basics/code-snippets/example-json.json" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h3 id="using-node-packages">Using node packages</h3>
+    <p>Node packages are hosted in the <a href="https://www.npmjs.com/">npm registry</a>, but usually you will probably find
+      the documentation, guides, code examples etc. on the package&#39;s GitHub repository before seeing the npm registry.
+      Most of the time though, you will discover useful packages by searching around for a solution to a problem or an
+      annoyance.</p>
+    <p>Bigger packages like the web-framework <a href="https://expressjs.com/">express.js</a> - used for this site, more on
+      that later - are very well known, and often serve as the starting point of a project, but there are millions of
+      smaller packages that solve very specific problems, and it can be hard to know when to add another dependency to your
+      project versus implementing the solution yourself.</p>
+    <p>Node.js makes it incredibly easy to install dependencies in your project - with a simple command you can have pretty
+      much any functionality you want! So if it&#39;s so easy to do, why not just make your project depend on
+      <em>everything</em>?</p>
+    <p>Need to capitalize a string? <code>npm install capitalize</code>.</p>
+    <p>Need to escape special characters in a string to use it in a regular expression?
+      <code>npm install regex-escape</code>.</p>
+    <p>Need to find out if a number is even? <code>npm install is-even</code>.</p>
+    <p>Soon enough your project will work exactly like you want it to, and you won&#39;t even have had to move a single
+      proverbial muscle. The primary issue here is that you probably don&#39;t really know what is actually in your code
+      anymore, even if you think you understand what every dependency you&#39;ve installed does. See, many dependencies have
+      dependencies of their own, and those dependencies might <em>also</em> have dependencies, and soon enough you&#39;re
+      downloading a whole web of unkown code to your computer, your server, or even serving it to clients all around the
+      world.</p>
+    <p>In most cases this will not be a big issue outside of bloated bundle-sizes resulting in sluggish perfomance or slow
+      page loads, but it does make your project vulnerable to things like supply-chain attacks, where a bad actor gains
+      control over some dependency, and uses it to spread malicious code downstream - you may have heard of the widespread
+      <a href="https://www.elastic.co/security-labs/threat-command/shai-hulud-chaindrop-npm-supply-chain">Shai-Hulud
+        worm</a> which compromised over 400 node packages in 2026.</p>
+    <p>Another thing to consider is that an over-reliance on dependencies (especially smaller utility packages), can rob you
+      of great learning opportunities. There can obviously be many reasons to work on a project, but if a primary goal is to
+      become better at writing code, it might be worth trying to implement some functionality or tool yourself, even if a
+      ready-made and well-tested solution already exists.</p>
+  </section>
+  
+</main>

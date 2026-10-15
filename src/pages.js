@@ -22,7 +22,7 @@ const frontPage = baseTemplate
   });
 
 const basics = proseTemplate
-  .withFragment(`${pagesPath}/fragments/basics.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/node-basics.html`, 'content')
   .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | basics',
