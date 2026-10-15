@@ -1,4 +1,5 @@
 import { config } from "./util/configLoader.js";
+import { sanitizeXSS } from "./util/sanitizer.js";
 
 const DEFAULT_SCRIPT_DEFER = config.scriptDeferDefault;
 
@@ -6,15 +7,30 @@ const syntaxArr = config.syntax.split(' ');
 const PLACEHOLDER_SYNTAX_START = syntaxArr[0];
 const PLACEHOLDER_SYNTAX_END = syntaxArr[1];
 
-function insertAtPlaceholder(htmlString, value, placeholder) {
-  const toInsert = String(value);
-  const target = PLACEHOLDER_SYNTAX_START + placeholder + PLACEHOLDER_SYNTAX_END;
+const syntaxUnescapedArr = config.syntaxUnescaped.split(' ');
+const PLACEHOLDER_SYNTAX_UNESCAPED_START = syntaxUnescapedArr[0];
+const PLACEHOLDER_SYNTAX_UNESCAPED_END = syntaxUnescapedArr[1];
 
+function insertFragment(htmlString, value, key) {
+  const toInsert = String(value);
+  const target = PLACEHOLDER_SYNTAX_UNESCAPED_START + key + PLACEHOLDER_SYNTAX_UNESCAPED_END;
+
+  return insertAtPlaceholder(htmlString, toInsert, target);
+}
+
+function insertProp(htmlString, value, key) {
+  const toInsert = sanitizeXSS(String(value));
+  const target = PLACEHOLDER_SYNTAX_START + key + PLACEHOLDER_SYNTAX_END;
+
+  return insertAtPlaceholder(htmlString, toInsert, target);
+}
+
+function insertAtPlaceholder(htmlString, value, target) {
   if (!htmlString.includes(target)) {
     throw new Error(`No placeholder key with value "${target}" found`);
   }
 
-  const result = htmlString.replace(target, toInsert);
+  const result = htmlString.replace(target, value);
 
   return result;
 }
@@ -48,6 +64,8 @@ function stripUnusedPlaceholders(htmlString) {
 }
 
 export default {
+  insertFragment,
+  insertProp,
   insertAtPlaceholder,
   insertStylesheet,
   insertScript,

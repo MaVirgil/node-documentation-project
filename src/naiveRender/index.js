@@ -53,7 +53,7 @@ function withFragment(baseHtml, fragmentPath, fragmentKey) {
   
   try {
     let contentToInsert = fileReader.readFromFile(fragmentPath);
-    newContent = renderer.insertAtPlaceholder(baseHtml, contentToInsert, fragmentKey);
+    newContent = renderer.insertFragment(baseHtml, contentToInsert, fragmentKey);
   } catch(e) {
     throw new Error(`withFragment(): ${e.message}`);
   }
@@ -70,7 +70,7 @@ function withProps(baseHtml, props = null) {
 
   try {
     Object.entries(props).forEach(([key, value]) => {
-      result = renderer.insertAtPlaceholder(result, sanitizeXSS(value), key);
+      result = renderer.insertProp(result, value, key);
     });
   } catch(e) {
     throw new Error(`withProps(): ${e.message}`);

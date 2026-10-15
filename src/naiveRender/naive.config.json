@@ -1,3 +1,4 @@
 {
-  "syntax": "{{ }}"
+  "placeholderSyntax": "{{ }}",
+  "placeholderSyntaxUnescaped": "{!{ }!}"
 }
