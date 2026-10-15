@@ -9,6 +9,7 @@ const baseTemplate = naiveRender.fromTemplate(
 
 const proseTemplate = baseTemplate
   .withStylesheet('/global/styles/prism.css')
+  .withStylesheet('/global/styles/article.css')
   .withScript('/global/scripts/prism.js', {
     defer: false,
   });
@@ -22,6 +23,7 @@ const frontPage = baseTemplate
 
 const basics = proseTemplate
   .withFragment(`${pagesPath}/fragments/basics.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | basics',
   });

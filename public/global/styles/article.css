@@ -1,0 +1,28 @@
+.contents-container {
+  margin-top: var(--gap-small);
+  .contents-header {
+    margin: 0;
+  }
+  .contents-list-item + .contents-list-item{
+    margin: var(--gap-tiny) 0;
+  }
+}
+
+.prose {
+  margin-top: var(--gap-small);
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  text-wrap-style: pretty;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: var(--gap-tiny);
+    margin-bottom: 0.2em;
+  }
+  p {
+    margin-top: var(--gap-tiny);
+  }
+}
