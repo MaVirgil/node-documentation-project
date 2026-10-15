@@ -3,17 +3,90 @@
   {!{backButton}!}
 
   <div class="contents-container">
-    <h3 class="contents-header">contents</h3>
+    <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#what-is-nodejs">JavaScript overview</a></li>
+      <li class="contents-list-item"><a href="#what-is-nodejs">Overview</a></li>
+      <li class="contents-list-item"><a href="#data-types">Data types</a></li>
+      <li class="contents-list-item"><a href="#type-coercion">Type coercion</a></li>
     </ul>
   </div>
 
   <hr>
 
   <section class="prose">
-    <h3 id="javascript-overview">JavaScript overview</h3>
-    <p>JavaScript is blasldkjasd kjdp jh asd</p>
+    <h2 id="overview">Overview</h2>
+    <p>JavaScript was developed in the mid-nineties for use in the Netscape Navigator, while later being adapted into
+      every mainstream browser. JavaScript allows the development of dynamic client-side interfaces, where the website
+      responds directly to the user&#39;s actions, without having to fetch a new HTML-page for every action.</p>
+    <p>Coming from type-safe languages like Java or C#, JavaScript can come across as very <em>permissive</em>, allowing
+      you to write a whole lot of weird code, that it will then try it&#39;s best to execute in the most predictable
+      manner possible. This can often lead to a lot of initial confusion, which mostly comes down to two features of the
+      language: JavaScript is both dynamically and weakly typed, meaning that variables are not bound to a single data
+      type and can change at runtime, and that expressions combining different data types will attempt to convert between
+      types as nesessary in a process called <em>type coercion</em>.</p>
+    <p>These two factors make JavaScript very flexible to use, but they also lead to a series of &quot;quirks&quot;, some
+      of which there will be examples of further down on this page.</p>
+  </section>
+
+  <section class="prose">
+    <h2 id="data-types">Data types</h2>
+    <p>The most commonly used data types in JavaScript are:</p>
+    <h4 id="number">Number</h4>
+    <p>A 64-bit signed type representing a numeric value.
+      Outside of the possible range of numbers, three distinct non-numeric values exist that are counted as being a
+      <code>Number</code>:
+    </p>
+    <ul>
+      <li><code>infinity</code> representing positive infinity</li>
+      <li><code>-infinity</code> representing negative infinity</li>
+      <li><code>NaN</code> represents the absence of a valid number (e.g. in the case of division by zero or other invalid
+        mathematical operations)</li>
+    </ul>
+    <h4 id="string">String</h4>
+    <p>A <code>String</code> represents text, and can be declaread with either <code>&quot;double quotes&quot;</code> or
+      <code>&#39;single quotes&#39;</code>. A so-called <em>template literal</em> can also be declared with
+      <code>`backtics` </code>, allowing you to embed values directly into the string:
+    </p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/stringLiteral.js"
+      class="language-javascript"><code></code></pre>
+  
+    <h4 id="boolean">Boolean</h4>
+    <p>A binary value representing either <code>true</code> or <code>false</code>.</p>
+    <h4 id="empty-values">Empty values</h4>
+    <p>Javascript has two values representing the absence of data: <code>null</code> and <code>undefined</code>. A
+      variable which has not yet been initialized, or has no value will resolve to <code>undefined</code>, and while there
+      <em>are</em> more or less intricate differences between the two, in modern JavaScript <code>null</code> is often the
+      lesser-used.</p>
+  </section>
+
+  <section class="prose">
+    <h2 id="type-coercion">Type coercion</h2>
+    <p>As mentioned in the overview, JavaScript accepts many operations and expressions you would not normally see in
+      statically typed languages like Java:</p>
+    <p>Of special note is the coercion of a given value to a <code>boolean</code> that happens in boolean expression. Many
+      values that could be considered &quot;empty&quot; are evaluted to the value of <code>false</code> when converted to
+      a <code>boolean</code>. This includes the number <code>0</code>, an empty string <code>&quot;&quot;</code>, an empty
+      array <code>[]</code> and the value <code>undefined</code>. These are called &quot;<em>nullish</em>&quot; values (as
+      opposed to the opposite - &quot;<em>truthy</em>&quot; values). Unlike many other cases where type coercion can be a
+      source of frustrating bugs and unexpected behaviour, this boolean coercion can be incredibly useful, and it means
+      that checking if a <code>String</code> is empty, for example, is as easy as writing <code>if (!someString)</code>.
+    </p>
+    <p>Given the above description, one might expect the expression <code>10 + &#39;5&#39;</code> to evaluate to
+      <code>15</code>, but this is where some of those &quot;quirks&quot; of coercion come in: The <code>+</code> operator
+      <em>is</em> used in expressions to add two numbers together, but it is <em>also</em> used to concatenate two string
+      values, and because the <code>String</code> type is the only type that can represent values of all other types, it
+      is at the top of the type hierarchy in JavaScript, so when a <code>String</code> operator like <code>+</code> is
+      used in an expression containing a string value, the other value is always coerced into a string as well. <em>Just
+        like every crustacean is destined to evolve into a crab, every JavaScript value is destined to be coerced into a
+        String.</em></p>
+    <p>This results in the previously stated expression evaluating like so:</p>
+  
+    <pre data-src="/pages/javascript-introduction/code-snippets/stringAdditionExample.js"
+      class="language-javascript"><code></code></pre>
+      
+    <p>This is one of those examples that may seem completely crazy to someone coming from a stricter language, but in
+      reality it is rarely an issue as long as this behaviour is kept in the back of the mind</p>
+  
   </section>
 
 </main>
