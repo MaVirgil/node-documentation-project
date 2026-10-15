@@ -1,5 +1,6 @@
 import { config } from "./util/configLoader.js";
 import { sanitizeXSS } from "./util/sanitizer.js";
+import { escapeRegexSymbols } from "./util/regexEscaper.js";
 
 const DEFAULT_SCRIPT_DEFER = config.scriptDeferDefault;
 
@@ -57,8 +58,20 @@ function insertIntoHead(htmlString, insertString) {
 }
 
 function stripUnusedPlaceholders(htmlString) {
+  //generate regex for matching syntax start and end:
+  const syntaxPattern = escapeRegexSymbols(PLACEHOLDER_SYNTAX_START) +
+    '[^' + escapeRegexSymbols(PLACEHOLDER_SYNTAX_END.charAt(0)) + ']*' + 
+    escapeRegexSymbols(PLACEHOLDER_SYNTAX_END);
+
+  const syntaxEscapedPattern = escapeRegexSymbols(PLACEHOLDER_SYNTAX_UNESCAPED_START) +
+    '[^' + escapeRegexSymbols(PLACEHOLDER_SYNTAX_UNESCAPED_END.charAt(0)) + ']*' + 
+    escapeRegexSymbols(PLACEHOLDER_SYNTAX_UNESCAPED_END);
+
+  const syntaxEscapedRegExp = new RegExp(syntaxEscapedPattern, 'g');
+  const syntaxRegExp = new RegExp(syntaxPattern, 'g');
+
   //apparently this regex expression is super slow ("super-linear perfomance" according to sonarQube), consider fixing in the future
-  const result = htmlString.replace(/\{\{[^}]*\}\}/g, '');
+  const result = htmlString.replace(syntaxRegExp, '').replace(syntaxEscapedRegExp, '');
 
   return result;
 }
