@@ -30,7 +30,7 @@ function insertAtPlaceholder(htmlString, value, target) {
     throw new Error(`No placeholder key with value "${target}" found`);
   }
 
-  const result = htmlString.replace(target, value);
+  const result = htmlString.replaceAll(target, value);
 
   return result;
 }
@@ -66,7 +66,6 @@ function stripUnusedPlaceholders(htmlString) {
 export default {
   insertFragment,
   insertProp,
-  insertAtPlaceholder,
   insertStylesheet,
   insertScript,
   stripUnusedPlaceholders,
