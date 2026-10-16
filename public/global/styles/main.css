@@ -52,7 +52,7 @@
  ****************/
 
 html {
-  font-family: libron;
+  font-family: libron, sans-serif;
   margin: 0;
   width: 100%;
   min-height: 100vh;
