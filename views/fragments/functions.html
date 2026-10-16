@@ -5,13 +5,83 @@
   <div class="contents-container">
     <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#what-is-nodejs">what Is Node.js</a></li>
-      <li class="contents-list-item"><a href="#the-npm-package-manager">The NPM package manager</a></li>
-      <li class="contents-list-item"><a href="#using-node-packages">Using node packages</a></li>
+      <li class="contents-list-item"><a href="#functions-as-values">Functions as values</a></li>
+      <li class="contents-list-item"><a href="#defining-a-function">Defining a function</a></li>
+      <li class="contents-list-item"><a href="#function-signatures">Function signatures</a></li>
+      <li class="contents-list-item"><a href="#callback-functions">Callback functions</a></li>
     </ul>
   </div>
 
   <hr>
 
-  
+  <section class="prose">
+    <h2 id="functions-as-values">Functions as values</h2>
+    <p>With the exception of the primitive data types, everything in JavaScript is an object, including functions.
+      This means that functions can be used like any other value in the language: they can be assigned to variables, passed as
+      arguments, returned from functions and stored in data structures or in object fields.</p>
+    <p>Treating functions like this is called having functions as <em>"first-class citizens"</em>, and enables a wealth of very powerful
+    functionality, the basics of which will be detailed in the later sections of this page.</p>
+  </section>
+
+  <section class="prose">
+    <h2 id="defining-a-function">Defining a function</h2>
+    <p>There are two primary ways of defining a functions in JavaScript:</p>
+    
+    <h4>Function declaration</h4>
+    <p>Function declaration will look very familiar to anyone with even basic programming experience, especially in the C-family of languages.
+      A function declaration has no access modifer and declares no return type, it simply begins with the keyword <code>function</code>, followed
+      by the function name and it's parameters:</p>
+    <pre data-src="/pages/functions/code-snippets/functionDeclaration.js" class="language-javascript"><code></code></pre>
+    <p>Any function declared with a function declaration is <em>hoisted</em> to the top of it's scope, and is therefore callable even above
+    it's declaration</p>
+
+    <h4>Function expressions</h4>
+    <p>A function expression is the most common way of defining functions in modern JavaScript, and works by writing and expression that
+      produces a function, which can then be bound to a variable (because functions are values in JavaScript):
+    <pre data-src="/pages/functions/code-snippets/functionExpression.js" class="language-javascript"><code></code></pre>
+    </p>
+  </section>
+
+  <section class="prose">
+    <h2 id="function-signatures">Function signatures</h2>
+    <p>In Javascript there is nothing stopping you from calling a function with more or less arguments than the function expects.
+      On one hand this can make it difficult to realize if you're using a function wrong, and it also puts a greater expectation on the 
+      provider of the function to validate the arguments properly. On the other hand, it frees the developer from having to define multiple
+      overloaded functions in situations where one or more parameters are optional. In this situation, a parameter can be given a default (or fallback)
+      value directly in the function signature, and if the given corresponding argument is <code>null</code> or <code>undefined</code>, the fallback
+      value will automatically be used:</p>
+    <pre data-src="/pages/functions/code-snippets/fallbackValues.js" class="language-javascript"><code></code></pre>
+    <p>If you want to write a function that takes an arbitrary amount of values as a parameter, you can use the <em>spread</em> operator
+    <code>...</code> in the function signature to define a so-called <em>"rest parameter"</em>, which will take any number of parameters and bind them to an array in the function scope:</p>
+    <pre data-src="/pages/functions/code-snippets/restOperator.js" class="language-javascript"><code></code></pre>
+    <p>For obvious reasons a rest parameter must be the last parameter in the function signature, and it follows that a function can only
+      have a single rest parameter.</p>
+    <p>As a quick aside, if you want to pass the contents of an iterable (like an array) into a function that takes a rest parameter instead of an iterable,
+      you can again use the spread operator to <em>"spread"</em> your array into atomic values:</p>
+    <pre data-src="/pages/functions/code-snippets/spreadOperator.js" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="callback-functions">Callback functions</h2>
+    <p>As mentioned at the top of this page, the fact that functions are values in JavaScript, enable them to be passed as arguments to other functions.
+      A function passed to another function is called a <em>"callback function"</em>, and this can be very useful when you know you want something done, 
+      and how you want it done, but want to let another piece of logic dictate when or if it is done. 
+      A very common example of this is with an <code>eventListener</code> in client-side javascript: Say you want to fetch some data to populate a
+      table on your website, but only when the user presses a 'fetch data' button. Now you can define a function called something like <code>fetchData() {...}</code>
+      where you decide exactly how this data should be fetched, and what should be done with it. Now you have defined the <em>"how"</em> of your functionality, 
+      and by passing your function as a callback you can let the brower's built-in eventListener handle the <em>"when/if"</em>:</p>
+    <pre data-src="/pages/functions/code-snippets/callbackEventListener.js" class="language-javascript"><code></code></pre>
+    <p>Another way to look at callback functions, is that they allow for the development of <em>composable</em> logic. Take the loop methods
+      mentioned on the <a href="/arrays-and-objects#loop-methods" target="_blank">Arrays and objects</a> page for example:
+      They allow us to compose behaviour by handling the iteration logic, and letting us handle the operation logic, which is often preferred
+      over hard-coding a rigid solution. Say we have the following array of <code>product</code> objects reprenting some groceries in a basket:</p>
+    <pre data-src="/pages/functions/code-snippets/productsArray.js" class="language-javascript"><code></code></pre>
+    <p>Now you are tasked with finding the total sum of the products in your basket. A standard approach using a for-loop might look like this:</p>
+    <pre data-src="/pages/functions/code-snippets/productsForLoop.js" class="language-javascript"><code></code></pre>
+    <p>But now your pesky manager tells you that actually, you also need to find the sum of only the organic products. Because we have combined the iteration logic with the operation logic, we have to either rewrite the whole function, running the risk of breaking
+      existing functionality and introducing bugs, or we have to write a whole new function with exactly the same iteration logic potentially cluttering our codebase with near-duplicate functions (the actual logic in this example
+      is really not that bad, but imagine if the <code>product</code> type was a hugely complex object). If we instead use the built-in loop methods to <em>compose</em> for the functionality
+      that we want, changing or adding behaviour is much more clean:</p>
+    <pre data-src="/pages/functions/code-snippets/productsLoopMethods.js" class="language-javascript"><code></code></pre>
+  </section>
 </main>
