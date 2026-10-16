@@ -35,8 +35,16 @@ const javascriptIntro = proseTemplate
     title: 'Node So Far | Javascript Introduction',
   });
 
+const arraysAndObjects = proseTemplate
+  .withFragment(`${pagesPath}/fragments/arrays-and-objects.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Arrays and Objects',
+  });
+
 export const pages = {
   frontPage,
   nodeBasics,
   javascriptIntro,
+  arraysAndObjects,
 };

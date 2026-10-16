@@ -12,7 +12,11 @@ router.get('/basics', (req, res) => {
 });
 
 router.get('/javascript-introduction', (req, res) => {
-  res.send(pages.javascriptIntro.render())
+  res.send(pages.javascriptIntro.render());
+});
+
+router.get('/arrays-and-objects', (req, res) => {
+  res.send(pages.arraysAndObjects.render());
 });
 
 export default router;
