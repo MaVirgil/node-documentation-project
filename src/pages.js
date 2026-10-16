@@ -42,9 +42,17 @@ const arraysAndObjects = proseTemplate
     title: 'Node So Far | Arrays and Objects',
   });
 
+const functions = proseTemplate
+  .withFragment(`${pagesPath}/fragments/functions.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Functions',
+  });
+
 export const pages = {
   frontPage,
   nodeBasics,
   javascriptIntro,
   arraysAndObjects,
+  functions
 };

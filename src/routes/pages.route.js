@@ -19,4 +19,8 @@ router.get('/arrays-and-objects', (req, res) => {
   res.send(pages.arraysAndObjects.render());
 });
 
+router.get('/functions', (req, res) => {
+  res.send(pages.functions.render());
+});
+
 export default router;
