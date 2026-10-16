@@ -36,7 +36,7 @@ pre[class*=language-] {
 :not(pre)>code {
   padding: .1em;
   border-radius: 3px;
-  white-space: normal
+  text-wrap-mode: nowrap;
 }
 
 
