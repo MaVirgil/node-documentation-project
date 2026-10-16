@@ -20,9 +20,10 @@
   h5,
   h6 {
     margin-top: var(--gap-tiny);
-    margin-bottom: 0.2em;
+    margin-bottom: 0;
   }
   p {
-    margin-top: var(--gap-tiny);
+    margin-top: 0;
+    margin-bottom: var(--gap-tiny);
   }
 }
