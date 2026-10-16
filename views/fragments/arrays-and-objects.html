@@ -4,14 +4,125 @@
   <div class="contents-container">
     <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#arrays">Arrays</a></li>
+      <li class="contents-list-item"><a href="#arrays">Arrays in JavaScript</a></li>
+      <li class="contents-list-item"><a href="#array-methods">Array methods</a></li>
+      <li class="contents-list-item"><a href="#loop-methods">Loop methods</a></li>
+      <li class="contents-list-item"><a href="#objects">Objects</a></li>
+      <li class="contents-list-item"><a href="#optional-property-access">Optional property access</a></li>
     </ul>
   </div>
   
   <hr>
+
+  <section class="prose">
+    <h2 id="arrays-in-javascript">Arrays in JavaScript</h2>
+    <p>Contrary to languages like C++ and Java, arrays in JavaScript are dynamically sized and can contain values of
+      multiple types in the same array:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayDynamicSize.js"
+      class="language-javascript"><code></code></pre>
+  </section>
   
   <section class="prose">
-    <h2 id="arrays">Arrays</h2>
-    <p>Arrays in javascript blbalbasdlkasdlkj</p>
+    <h2 id="array-methods">Array methods</h2>
+    <p>Arrays have a series of built-in methods to mutate the array, with names largely borrowed from the stack
+      data-structure.</p>
+    <h4 id="push-">push()</h4>
+    <p><code>arr.push(element)</code> inserts one or more elements at the end of the array.</p>
+    <h4 id="pop-">pop()</h4>
+    <p><code>arr.pop()</code> removes the last element of an array and returns it.</p>
+    <h4 id="unshift-">unshift()</h4>
+    <p><code>arr.unshift(element)</code> inserts one or more elements to the start of the array.</p>
+    <h4 id="shift-">shift()</h4>
+    <p><code>arr.shift()</code> removes the first element in the array and returns it.</p>
+  
+    <h4 id="at-">at()</h4>
+    <p><code>arr.at(index)</code> returns the element at the given index. Can also be used to find an element
+      <code>n</code> indices from the end of the array:
+    </p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayAt.js" class="language-javascript"><code></code></pre>
+    <p>Note that searching from the back of the array is not 0-indexed,
+      and thus <code>arr.at(-1)</code> returns the very last element in the array.</p>
+  
+    <h4 id="index-of">indexOf()</h4>
+    <p><code>arr.indexOf(element)</code> returns the index of the first occurance of an element, or <code>-1</code>
+      if no result was found</p>
+  
+    <h4>includes()</h4>
+    <p><code>arr.includes(element)</code> returns a boolean value representing whether or not the array contains the given
+      element</p>
+  
+    <h4>splice()</h4>
+    <p><code>arr.splice(start, deleteCount, ...elements)</code> is used to insert, remove or replace a number of elements
+      at specific indices in an array:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arraySplice.js" class="language-javascript"><code></code></pre>
+  
+    <h4>slice()</h4>
+    <p><code>arr.slice(start, end)</code> returns a subsection of an existing array starting at the index
+      of the first parameter, and ending before the index of the second parameter. If no end index is given, the method
+      returns the rest of the original array from the start index</p>
+  </section>
+  
+  <section class="prose">
+    <h2 id="loop-methods">Loop methods</h2>
+    <p>While JavaScript does support all the standard loops like <code>for</code>, <code>while</code> and
+      <code>do-while</code>, when you have to iterate over an array or map, these are often eschewed in favor of a handful
+      of built-in iteration methods.
+    </p>
+  
+    <h4 id="foreach-">forEach()</h4>
+    <p><code>arr.forEach(function)</code> is used when you need to iterate over an array, and perform some action with
+      each
+      element without transforming any of the values. A classic example is printing every element seperately to the
+      console:
+    </p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayForEach.js"
+      class="language-javascript"><code></code></pre>
+  
+    <h4 id="filter-">filter()</h4>
+    <p><code>arr.filter(function)</code> returns a new array of items that evaluate to <code>true</code> given a boolean
+      predicate:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayFilter.js" class="language-javascript"><code></code></pre>
+  
+    <h4 id="map-">map()</h4>
+    <p><code>arr.map(function)</code> returns a new array of the same size, where every element has been transformed by
+      the supplied callback function:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayMap.js" class="language-javascript"><code></code></pre>
+  
+    <h4 id="reduce-">reduce()</h4>
+    <p><code>arr.reduce(function)</code> is used to reduce an array down to a single value. It takes a callback function
+      as parameter, which is called with two arguments: the <em>accumulator</em> which holds every combined value so far,
+      and the value of the current element. Optionally the callback function can define a starting value as a third
+      argument.</p>
+    <p>A simple example of the <code>reduce()</code> function is to show how it can be used to find the sum of an array of
+      numbers:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayReduce.js" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="objects">Objects</h2>
+    <p>An object in JavaScript is composed key-value pairs, which can contain any data type:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/objectBasicDeclaration.js" class="language-javascript"><code></code></pre>
+    <p>The values in an object - the object's *fields* - can then naturally be accessed with the <code>.</code> operator
+    like in any other language, but because the fields are simply key-value pairs, they can also be accessed with bracket notation <code>[]</code>:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/objectFieldAccess.js" class="language-javascript"><code></code></pre>
+    <p>Fields in JavaScript objects are more loosely defined than in languages like Java, and an object's fields
+      can freely be removed or added at runtime:
+    </p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/objectAddRemoveFields.js" class="language-javascript"><code></code></pre>
+    <p>With object destructuring it is also possible to retrieve one or more values from an object with very simple syntax:</p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/objectDestructuring.js" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="optional-property-access">Optional property access</h2>
+    <p>If you try to access a field of an object that does not exist, you will not get the value <code>undefined</code>,
+      instead your code will crash with a <code>TypeError</code>:
+    </p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/objectFieldOfNonExistentField.js" class="language-javascript"><code></code></pre>
+    <p>If we want to access some property of a field which we are not certain will be present, we can use the Optional
+      property access operator <code>?</code>, which will resolve to <code>undefined</code> if the field we are reading from
+      does not exist:
+    </p>
+    <pre data-src="/pages/arrays-and-objects/code-snippets/objectOptionalPropertyAccess.js" class="language-javascript"><code></code></pre>
   </section>
 </main>
