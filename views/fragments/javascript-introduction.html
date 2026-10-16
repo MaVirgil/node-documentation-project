@@ -8,6 +8,9 @@
       <li class="contents-list-item"><a href="#what-is-nodejs">Overview</a></li>
       <li class="contents-list-item"><a href="#data-types">Data types</a></li>
       <li class="contents-list-item"><a href="#type-coercion">Type coercion</a></li>
+      <li class="contents-list-item"><a href="#equality-operators">Equality operators</a></li>
+      <li class="contents-list-item"><a href="#logical-short-circuting">Logical short-circuting</a></li>
+      <li class="contents-list-item"><a href="#variables">Variables</a></li>
     </ul>
   </div>
 
@@ -15,7 +18,7 @@
 
   <section class="prose">
     <h2 id="overview">Overview</h2>
-    <p>JavaScript was developed in the mid-nineties for use in the Netscape Navigator, while later being adapted into
+    <p>JavaScript was developed in the mid-nineties for use in the Netscape Navigator browser, while later being adapted into
       every mainstream browser. JavaScript allows the development of dynamic client-side interfaces, where the website
       responds directly to the user&#39;s actions, without having to fetch a new HTML-page for every action.</p>
     <p>Coming from type-safe languages like Java or C#, JavaScript can come across as very <em>permissive</em>, allowing
@@ -31,6 +34,7 @@
   <section class="prose">
     <h2 id="data-types">Data types</h2>
     <p>The most commonly used data types in JavaScript are:</p>
+   
     <h4 id="number">Number</h4>
     <p>A 64-bit signed type representing a numeric value.
       Outside of the possible range of numbers, three distinct non-numeric values exist that are counted as being a
@@ -42,40 +46,46 @@
       <li><code>NaN</code> represents the absence of a valid number (e.g. in the case of division by zero or other invalid
         mathematical operations)</li>
     </ul>
+    
     <h4 id="string">String</h4>
     <p>A <code>String</code> represents text, and can be declaread with either <code>&quot;double quotes&quot;</code> or
       <code>&#39;single quotes&#39;</code>. A so-called <em>template literal</em> can also be declared with
-      <code>`backtics` </code>, allowing you to embed values directly into the string:
+      <code>`backtics`</code>, allowing you to embed values directly into the string:
     </p>
     <pre data-src="/pages/javascript-introduction/code-snippets/stringLiteral.js"
       class="language-javascript"><code></code></pre>
   
     <h4 id="boolean">Boolean</h4>
     <p>A binary value representing either <code>true</code> or <code>false</code>.</p>
+   
     <h4 id="empty-values">Empty values</h4>
-    <p>Javascript has two values representing the absence of data: <code>null</code> and <code>undefined</code>. A
-      variable which has not yet been initialized, or has no value will resolve to <code>undefined</code>, and while there
-      <em>are</em> more or less intricate differences between the two, in modern JavaScript <code>null</code> is often the
-      lesser-used.</p>
+    <p>Javascript has two values representing the absence of data: <code>null</code> and <code>undefined</code>. There are both semantic
+      and functional differences between these two values: while <code>undefined</code> represents a variable with no assigned value,
+      <code>null</code> represents the explicit absence of a value, and will never automatically be produced by the language.
+      There are also some slight quirks with the way that <code>null</code> is implemented, resulting, for example, in the expression <code>typeof null</code>
+      resolving to <code>Object</code>. While some built-in functions of the runtime environment (like node or the JavaScript engine built into browsers) do return <code>null</code>
+      represent a missing value, <code>undefined</code> is by far the more common value of the two. It is also the value that is automatically given to a variable which has not
+      yet been initialized.</p>
+
+    <h4 id="Object">Object</h4>
+    <p>An object in JavaScript is a composite data type and fundamentally just consists of a collection of key-value pairs,
+      not unlike a <code>Struct</code> in languages like C, or even a <code>Table</code> in Lua.
+      Unlike a struct which just carries data and no behaviour, a number of language features in JavaScript enable
+      an object to carry both unexposed state through closures, and behaviour through functions-as-values (more on this later).
+    </p>
   </section>
 
   <section class="prose">
     <h2 id="type-coercion">Type coercion</h2>
     <p>As mentioned in the overview, JavaScript accepts many operations and expressions you would not normally see in
       statically typed languages like Java:</p>
-    <p>Of special note is the coercion of a given value to a <code>boolean</code> that happens in boolean expression. Many
-      values that could be considered &quot;empty&quot; are evaluted to the value of <code>false</code> when converted to
-      a <code>boolean</code>. This includes the number <code>0</code>, an empty string <code>&quot;&quot;</code>, an empty
-      array <code>[]</code> and the value <code>undefined</code>. These are called &quot;<em>nullish</em>&quot; values (as
-      opposed to the opposite - &quot;<em>truthy</em>&quot; values). Unlike many other cases where type coercion can be a
-      source of frustrating bugs and unexpected behaviour, this boolean coercion can be incredibly useful, and it means
-      that checking if a <code>String</code> is empty, for example, is as easy as writing <code>if (!someString)</code>.
-    </p>
-    <p>Given the above description, one might expect the expression <code>10 + &#39;5&#39;</code> to evaluate to
+    <pre data-src="/pages/javascript-introduction/code-snippets/coercionExample.js"
+      class="language-javascript"><code></code></pre>
+    <p>Given the above examples, one might expect the expression <code>10 + &#39;5&#39;</code> to evaluate to
       <code>15</code>, but this is where some of those &quot;quirks&quot; of coercion come in: The <code>+</code> operator
       <em>is</em> used in expressions to add two numbers together, but it is <em>also</em> used to concatenate two string
       values, and because the <code>String</code> type is the only type that can represent values of all other types, it
-      is at the top of the type hierarchy in JavaScript, so when a <code>String</code> operator like <code>+</code> is
+      is at the top of the type hierarchy in JavaScript, so when an operator like <code>+</code> is
       used in an expression containing a string value, the other value is always coerced into a string as well. <em>Just
         like every crustacean is destined to evolve into a crab, every JavaScript value is destined to be coerced into a
         String.</em></p>
@@ -83,10 +93,88 @@
   
     <pre data-src="/pages/javascript-introduction/code-snippets/stringAdditionExample.js"
       class="language-javascript"><code></code></pre>
-      
+
     <p>This is one of those examples that may seem completely crazy to someone coming from a stricter language, but in
       reality it is rarely an issue as long as this behaviour is kept in the back of the mind</p>
+    <p>Of special note is the coercion of a given value to a <code>boolean</code> that happens in boolean expression. Many
+      values that could be considered &quot;empty&quot; are evaluted to the value of <code>false</code> when converted to
+      a <code>boolean</code>. This includes the number <code>0</code>, an empty string <code>&quot;&quot;</code>, an empty
+      array <code>[]</code> and the value <code>undefined</code>. These are called &quot;<em>falsey</em>&quot; values (as
+      opposed to the opposite - &quot;<em>truthy</em>&quot; values). Unlike many other cases where type coercion can be a
+      source of frustrating bugs and unexpected behaviour, this boolean coercion can be incredibly useful, and it means
+      that checking if a <code>String</code> is empty, for example, is as easy as writing <code>if (!someString)</code>.
+    </p>
   
+  </section>
+
+  <section class="prose">
+    <h2 id="equality-operators">Equality operators</h2>
+    <p>As seen above, the standard equality operators <code>==</code> and <code>!=</code> in JavaScript performs type
+      coercion between values, which can often eliminate the use for a lot of boiler-plate conversion logic, but at the
+      same time it can lead to bugs and unexpected behaviour. Due to this behaviour, the <code>==</code> operator is also
+      called the <em>&quot;loose equality operator&quot;</em>.</p>
+    <p>To compare two values without coercion, you can use the <em>&quot;strict equality operator&quot;</em> <code>===</code>
+      instead, which performs an equality check of both type <em>and</em> value:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/strictEquality.js"
+      class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="logical-short-circuting">Logical short-circuting</h2>
+    <p>The logical operator OR <code>||</code> used in an expression automatically converts the leftmost value into a
+      boolean, and returns either the left or right value depending on whether or not the boolean evaluated to
+      <code>true</code> or <code>false</code>:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitOR.js"
+      class="language-javascript"><code></code></pre>
+
+    <p>This can be useful when defining fallback values to use in case the original value is falsey:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitFallback.js"
+      class="language-javascript"><code></code></pre>
+    <p>Inversely, the AND operator <code>&amp;&amp;</code> returns the rightmost value if the leftmost value evaluates to
+      <code>true</code>.</p>
+    <p>The <em>&quot;nullish coalescing operator&quot;</em> <code>??</code> works in largely the same way as the <code>||</code>
+      operator, except it does not perform type coercion, and only returns the rightmost value if the value to the left is
+      either <code>undefined</code> or <code>null</code>. This can be useful when defining fallback behaviour for working
+      with numbers, where <code>0</code> is a valid value, but would evaluate to <code>false</code> using the
+      <code>||</code> operator:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/nullishCoalescing.js"
+      class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="variables">Variables</h2>
+    <p>There are three ways of declaring a variable in JavaScript, each with their own characteristics and behaviours.</p>
+    <h4 id="var">var</h4>
+    <p>The <code>var</code> keyword used to be the only way to declare a variable in JavaScript (before ES6 in 2015). A
+      variable declared with <code>var</code> is re-declarable, re-assignable and exists in <em>function scope</em>
+      (notably different
+      from block scope), which leads to some at-times pretty undesirable behaviour:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/varExample.js"
+      class="language-javascript"><code></code></pre>
+  
+    <p>Another less fortunate feature of <code>var</code> variables is that they are hoisted <em>and</em> initialized as
+      <code>undefined</code>, which means that they are accessible without error before they are declared in the code, but
+      their value will always be <code>undefined</code>:
+    </p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/varExampleHoisting.js"
+      class="language-javascript"><code></code></pre>
+    <p>Due to these behaviours two new variable keywords were introduced in 2015, and since then, the usage of the
+      <code>var</code> keyword has generally been discouraged in favor of the two alternatives.
+    </p>
+  
+    <h4 id="let">let</h4>
+    <p>Variables declared with <code>let</code> are re-assignable like <code>var</code>, but exist in block scope as
+      opposed to function scope:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/letScopeExample.js"
+      class="language-javascript"><code></code></pre>
+    <p><code>let</code> variables are also hoisted, but <em>not</em> initialized, leading to a more explicit error when
+      used before their declaration:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/letHoistingExample.js"
+      class="language-javascript"><code></code></pre>
+    <h4 id="const">const</h4>
+    <p><code>const</code> variables are block scoped like <code>let</code>, but are constants, and cannot be reassigned:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/constReassignmentExample.js"
+      class="language-javascript"><code></code></pre>
   </section>
 
 </main>
