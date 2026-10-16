@@ -9,8 +9,8 @@
       <li class="contents-list-item"><a href="#data-types">Data types</a></li>
       <li class="contents-list-item"><a href="#type-coercion">Type coercion</a></li>
       <li class="contents-list-item"><a href="#equality-operators">Equality operators</a></li>
-      <li class="contents-list-item"><a href="#logical-short-circuting">Logical short-circuting</a></li>
       <li class="contents-list-item"><a href="#variables">Variables</a></li>
+      <li class="contents-list-item"><a href="#logical-short-circuting">Logical short-circuting</a></li>
     </ul>
   </div>
 
@@ -121,28 +121,6 @@
   </section>
 
   <section class="prose">
-    <h2 id="logical-short-circuting">Logical short-circuting</h2>
-    <p>The logical operator OR <code>||</code> used in an expression automatically converts the leftmost value into a
-      boolean, and returns either the left or right value depending on whether or not the boolean evaluated to
-      <code>true</code> or <code>false</code>:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitOR.js"
-      class="language-javascript"><code></code></pre>
-
-    <p>This can be useful when defining fallback values to use in case the original value is falsey:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitFallback.js"
-      class="language-javascript"><code></code></pre>
-    <p>Inversely, the AND operator <code>&amp;&amp;</code> returns the rightmost value if the leftmost value evaluates to
-      <code>true</code>.</p>
-    <p>The <em>&quot;nullish coalescing operator&quot;</em> <code>??</code> works in largely the same way as the <code>||</code>
-      operator, except it does not perform type coercion, and only returns the rightmost value if the value to the left is
-      either <code>undefined</code> or <code>null</code>. This can be useful when defining fallback behaviour for working
-      with numbers, where <code>0</code> is a valid value, but would evaluate to <code>false</code> using the
-      <code>||</code> operator:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/nullishCoalescing.js"
-      class="language-javascript"><code></code></pre>
-  </section>
-
-  <section class="prose">
     <h2 id="variables">Variables</h2>
     <p>There are three ways of declaring a variable in JavaScript, each with their own characteristics and behaviours.</p>
     <h4 id="var">var</h4>
@@ -175,6 +153,28 @@
     <h4 id="const">const</h4>
     <p><code>const</code> variables are block scoped like <code>let</code>, but are constants, and cannot be reassigned:</p>
     <pre data-src="/pages/javascript-introduction/code-snippets/constReassignmentExample.js"
+      class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="logical-short-circuting">Logical short-circuting</h2>
+    <p>The logical operator OR <code>||</code> used in an expression automatically converts the leftmost value into a
+      boolean, and returns either the left or right value depending on whether or not the boolean evaluated to
+      <code>true</code> or <code>false</code>:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitOR.js"
+      class="language-javascript"><code></code></pre>
+
+    <p>This can be useful when defining fallback values to use in case the original value is falsey:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitFallback.js"
+      class="language-javascript"><code></code></pre>
+    <p>Inversely, the AND operator <code>&amp;&amp;</code> returns the rightmost value if the leftmost value evaluates to
+      <code>true</code>.</p>
+    <p>The <em>&quot;nullish coalescing operator&quot;</em> <code>??</code> works in largely the same way as the <code>||</code>
+      operator, except it does not perform type coercion, and only returns the rightmost value if the value to the left is
+      either <code>undefined</code> or <code>null</code>. This can be useful when defining fallback behaviour for working
+      with numbers, where <code>0</code> is a valid value, but would evaluate to <code>false</code> using the
+      <code>||</code> operator:</p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/nullishCoalescing.js"
       class="language-javascript"><code></code></pre>
   </section>
 
