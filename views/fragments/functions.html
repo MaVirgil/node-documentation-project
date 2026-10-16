@@ -25,18 +25,18 @@
 
   <section class="prose">
     <h2 id="defining-a-function">Defining a function</h2>
-    <p>There are two primary ways of defining a functions in JavaScript:</p>
+    <p>There are two primary ways of defining a function in JavaScript:</p>
     
     <h4>Function declaration</h4>
     <p>Function declaration will look very familiar to anyone with even basic programming experience, especially in the C-family of languages.
-      A function declaration has no access modifer and declares no return type, it simply begins with the keyword <code>function</code>, followed
-      by the function name and it's parameters:</p>
+      A function declaration has no access modifier and declares no return type, it simply begins with the keyword <code>function</code>, followed
+      by the function name and its parameters:</p>
     <pre data-src="/pages/functions/code-snippets/functionDeclaration.js" class="language-javascript"><code></code></pre>
-    <p>Any function declared with a function declaration is <em>hoisted</em> to the top of it's scope, and is therefore callable even above
-    it's declaration</p>
+    <p>Any function declared with a function declaration is <em>hoisted</em> to the top of its scope, and is therefore callable even above
+    its declaration</p>
 
     <h4>Function expressions</h4>
-    <p>A function expression is the most common way of defining functions in modern JavaScript, and works by writing and expression that
+    <p>A function expression is the most common way of defining functions in modern JavaScript, and works by writing an expression that
       produces a function, which can then be bound to a variable (because functions are values in JavaScript):
     <pre data-src="/pages/functions/code-snippets/functionExpression.js" class="language-javascript"><code></code></pre>
     </p>
@@ -48,7 +48,7 @@
       On one hand this can make it difficult to realize if you're using a function wrong, and it also puts a greater expectation on the 
       provider of the function to validate the arguments properly. On the other hand, it frees the developer from having to define multiple
       overloaded functions in situations where one or more parameters are optional. In this situation, a parameter can be given a default (or fallback)
-      value directly in the function signature, and if the given corresponding argument is <code>null</code> or <code>undefined</code>, the fallback
+      value directly in the function signature, and if the given corresponding argument is <code>undefined</code>, the fallback
       value will automatically be used:</p>
     <pre data-src="/pages/functions/code-snippets/fallbackValues.js" class="language-javascript"><code></code></pre>
     <p>If you want to write a function that takes an arbitrary amount of values as a parameter, you can use the <em>spread</em> operator
@@ -69,7 +69,7 @@
       A very common example of this is with an <code>eventListener</code> in client-side javascript: Say you want to fetch some data to populate a
       table on your website, but only when the user presses a 'fetch data' button. Now you can define a function called something like <code>fetchData() {...}</code>
       where you decide exactly how this data should be fetched, and what should be done with it. Now you have defined the <em>"how"</em> of your functionality, 
-      and by passing your function as a callback you can let the brower's built-in eventListener handle the <em>"when/if"</em>:</p>
+      and by passing your function as a callback you can let the browser's built-in eventListener handle the <em>"when/if"</em>:</p>
     <pre data-src="/pages/functions/code-snippets/callbackEventListener.js" class="language-javascript"><code></code></pre>
     <p>Another way to look at callback functions, is that they allow for the development of <em>composable</em> logic. Take the loop methods
       mentioned on the <a href="/arrays-and-objects#loop-methods" target="_blank">Arrays and objects</a> page for example:
