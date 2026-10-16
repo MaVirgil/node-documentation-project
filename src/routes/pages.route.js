@@ -23,4 +23,8 @@ router.get('/functions', (req, res) => {
   res.send(pages.functions.render());
 });
 
+router.get('/dev-tools', (req, res) => {
+  res.send(pages.devTools.render());
+});
+
 export default router;

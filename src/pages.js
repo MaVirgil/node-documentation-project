@@ -49,10 +49,18 @@ const functions = proseTemplate
     title: 'Node So Far | Functions',
   });
 
+const devTools = proseTemplate
+  .withFragment(`${pagesPath}/fragments/dev-tools-node.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Dev-tools for Node',
+  });
+
 export const pages = {
   frontPage,
   nodeBasics,
   javascriptIntro,
   arraysAndObjects,
-  functions
+  functions,
+  devTools,
 };

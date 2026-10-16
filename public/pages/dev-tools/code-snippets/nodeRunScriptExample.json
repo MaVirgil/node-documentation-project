@@ -1,0 +1,7 @@
+{
+  "name": "test-project",
+  "type": "module",
+  "scripts": {
+    "dev": "PORT=8080 node src/app.js"
+  }
+}
