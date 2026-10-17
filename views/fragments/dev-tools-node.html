@@ -8,7 +8,7 @@
       <li class="contents-list-item"><a href="#hot-reloading">Hot-reloading</a></li>
       <li class="contents-list-item"><a href="#linting">Linting</a></li>
       <li class="contents-list-item"><a href="#using-environment-variables">Using environment variables</a></li>
-      <li class="contents-list-item"><a href="#node-run-scripts">Using node run-scripts</a></li>
+      <li class="contents-list-item"><a href="#npm-scripts">Using NPM scripts</a></li>
     </ul>
   </div>
 
@@ -65,12 +65,12 @@
   </section>
 
   <section class="prose">
-    <h2 id="node-run-scripts">Using node run-scripts</h2>
+    <h2 id="npm-scripts">Using NPM scripts</h2>
     <p>On this page we have looked at a couple of different ways to run a node project with node commands. The problem with these
       is that you need to remember them, and write them every time you run your application. This <em>might</em> not be a huge issue
       for <em>you</em> as long as you are actively working on your project, and it is relatively simple, but give your project to a team-member
       or yourself 3 months from now, and having to know remember those commands becomes really problematic. Luckily we can define scripts with node, that
-      we can use to run more complex commands easily and fast. These scripts are declared in the <code>package.json</code> file, and can be run with
+      we can use to run more complex commands easily and fast. These scripts are defined in the <code>package.json</code> file, and can be run with
       <code>npm run &lt;script-name&gt;</code>. Say we just have a single environment variable in our project - the port that our application should run on -
       and we don't want to install dotenv, and add a <code>.env</code> file to our project just for a small 4-digit variable. Instead we can define a
       run-script that automatically sets the port to 8080 when we run it:</p>
