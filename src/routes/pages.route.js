@@ -27,4 +27,8 @@ router.get('/dev-tools', (req, res) => {
   res.send(pages.devTools.render());
 });
 
+router.get('/dates', (req, res) => {
+  res.send(pages.dates.render());
+});
+
 export default router;

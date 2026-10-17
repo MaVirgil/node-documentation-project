@@ -56,6 +56,13 @@ const devTools = proseTemplate
     title: 'Node So Far | Dev-tools for Node',
   });
 
+const dates = proseTemplate
+  .withFragment(`${pagesPath}/fragments/javascript-dates.html`, 'content')
+  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Dates',
+  });
+
 export const pages = {
   frontPage,
   nodeBasics,
@@ -63,4 +70,5 @@ export const pages = {
   arraysAndObjects,
   functions,
   devTools,
+  dates,
 };
