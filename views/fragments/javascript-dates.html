@@ -5,20 +5,44 @@
   <div class="contents-container">
     <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#dates-in-javascript">Dates in JavaScript</a></li>
-      <li class="contents-list-item"><a href="#creating-date-object">Creating a Date object</a></li>
+      <li class="contents-list-item"><a href="#representing-dates">Representing dates</a></li>
+      <li class="contents-list-item"><a href="#using-dates-in-javascript">Using dates in JavaScript</a></li>
     </ul>
   </div>
 
   <hr>
 
   <section class="prose">
-    <h2 id="creating-date-object">Creating a Date object</h2>
-    <p><code>Date</code> objects in JavaScript are - surprisingly - used to represent points in time. Fundamentally
-    a date object describes an amount of miliseconds before or after January 1st 1970, also known as <em>"unix EPOCH time"</em>.
-    This method of representing time came about as a result of the infamous <a>Y2K bug</a>, where - in order to save valuable memory capacity - 
-    computer systems storing dates only used two digits to represent the year, which made it impossible to differentiate between the years
-    2000 and 1900. 
-  </p>
+    <h2 id="representing-dates">Representing dates</h2>
+    <p><code>Date</code> objects in JavaScript are - surprisingly - used to represent points in time. Under the hood
+      a date object just describes a number of milliseconds before or after midnight on January 1st 1970, a moment known
+      as the <em>"Unix epoch"</em>.
+    </p>
+  
+    <p>This method of representing time hasn't always been the standard. You've probably heard of the infamous
+      <a href="https://www.britannica.com/technology/Y2K-bug" target="_blank">Y2K bug</a>, which was caused by computer
+      systems - in order to save
+      valuable memory - only using two digits to store years, which made it impossible to differentiate
+      between the years 2000 and 1900. In the end, the Y2K bug was not as catastrophic as many people feared
+      thanks to a lot of people working very hard to fix it, while cursing the lack of foresight that led to the problem
+      to begin with.
+    </p>
+  
+    <p>If you're young like me, and sad that you weren't around for this terribly exciting time, I've got good news:
+      Many systems today store Unix time in 32-bit integers, which will overflow in
+      <a href="https://www.kaspersky.com/blog/mitigating-y2k38-vulnerability-in-organization/55150/"
+        target="_blank">2038</a>,
+      meaning that if you play your cards right, you might just get to work very hard to fix it, while cursing the lack of
+      foresight that led to the problem to begin with.
+    </p>
+
+    <p>Luckily, JavaScript uses 64-bit floats to store Unix time, so you'll never have to worry about your code suddenly breaking.
+      Software developers 270,000 years down the road of course, might curse your lack of foresight. 
+    </p>
+  </section>
+
+  <section class="prose">
+    <h2 id="using-dates-in-javascript">Using dates in JavaScript</h2>
+
   </section>
 </main>
