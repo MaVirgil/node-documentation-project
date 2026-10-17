@@ -31,4 +31,8 @@ router.get('/dates', (req, res) => {
   res.send(pages.dates.render());
 });
 
+router.get('/http-basics', (req, res) => {
+  res.send(pages.httpBasics.render());
+});
+
 export default router;

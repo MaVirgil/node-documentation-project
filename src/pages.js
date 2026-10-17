@@ -1,11 +1,11 @@
 import naiveRender from './naiveRender/index.js';
 import path from 'node:path';
 
-const pagesPath = path.resolve('views');
+const viewsPath = path.resolve('views');
 
 const baseTemplate = naiveRender.fromTemplate(
-  `${pagesPath}/templates/base.html`,
-);
+  `${viewsPath}/templates/base.html`,
+).withFragment(`${viewsPath}/fragments/components/footer.html`, 'footer');
 
 const proseTemplate = baseTemplate
   .withStylesheet('/global/styles/prism.css')
@@ -15,52 +15,59 @@ const proseTemplate = baseTemplate
   });
 
 const frontPage = baseTemplate
-  .withFragment(`${pagesPath}/fragments/frontpage.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/frontpage.html`, 'content')
   .withStylesheet('/pages/frontpage/style/frontpage.css')
   .withProps({
     title: 'Node So Far',
   });
 
 const nodeBasics = proseTemplate
-  .withFragment(`${pagesPath}/fragments/node-basics.html`, 'content')
-  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withFragment(`${viewsPath}/fragments/node-basics.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | basics',
   });
 
 const javascriptIntro = proseTemplate
-  .withFragment(`${pagesPath}/fragments/javascript-introduction.html`, 'content')
-  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withFragment(`${viewsPath}/fragments/javascript-introduction.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | Javascript Introduction',
   });
 
 const arraysAndObjects = proseTemplate
-  .withFragment(`${pagesPath}/fragments/arrays-and-objects.html`, 'content')
-  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withFragment(`${viewsPath}/fragments/arrays-and-objects.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | Arrays and Objects',
   });
 
 const functions = proseTemplate
-  .withFragment(`${pagesPath}/fragments/functions.html`, 'content')
-  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withFragment(`${viewsPath}/fragments/functions.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | Functions',
   });
 
 const devTools = proseTemplate
-  .withFragment(`${pagesPath}/fragments/dev-tools-node.html`, 'content')
-  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withFragment(`${viewsPath}/fragments/dev-tools-node.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | Dev-tools for Node',
   });
 
 const dates = proseTemplate
-  .withFragment(`${pagesPath}/fragments/javascript-dates.html`, 'content')
-  .withFragment(`${pagesPath}/fragments/components/backButton.html`, 'backButton')
+  .withFragment(`${viewsPath}/fragments/javascript-dates.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
   .withProps({
     title: 'Node So Far | Dates',
+  });
+
+const httpBasics = proseTemplate
+  .withFragment(`${viewsPath}/fragments/http-basics.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | HTTP basics',
   });
 
 export const pages = {
@@ -71,4 +78,5 @@ export const pages = {
   functions,
   devTools,
   dates,
+  httpBasics,
 };
