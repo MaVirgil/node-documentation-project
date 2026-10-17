@@ -8,6 +8,13 @@
   }
 }
 
+img {
+  max-width: 85%;
+  height: auto;
+  border-radius: var(--rounding);
+  margin: 0;
+}
+
 .prose {
   margin-top: var(--gap-small);
   line-height: 1.6;
@@ -25,5 +32,8 @@
   p {
     margin-top: 0;
     margin-bottom: var(--gap-tiny);
+  }
+  small {
+    color: var(--text-color-muted);
   }
 }
