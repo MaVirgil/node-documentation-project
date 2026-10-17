@@ -5,14 +5,36 @@
   <div class="contents-container">
     <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#representing-dates">First header</a></li>
+      <li class="contents-list-item"><a href="#client-server-model">The client-server model</a></li>
+      <li class="contents-list-item"><a href="#communicating-with-http">Communicating with HTTP</a></li>
     </ul>
   </div>
 
   <hr>
 
   <section class="prose">
-    <h2>First Header</h2>
-    <p>laskjjk asldkjlaf  asfkj </p>
+    <h2 id="client-server-model">The client-server model</h2>
+    <p>The client-server model describes the fundamental mechanism behind the communication and data flow
+      of distributed systems. In a client-server relationship, the client reaches out with a <em>request</em>
+      to a server, which processes the request and sends back a <em>response</em>. The most common example of the
+      client-server dichotomy is the relationship between the web browser as the client, and the backend system that serves
+      the webpage content as the server. In reality, most of the servers in such relationships, are themselves clients in
+      other relationships, made so by the fact that they might fetch external data from an API,
+      or even be part of a microservice architecture.
+    </p>
+
+    <img src="/pages/http-basics/images/client-server.webp" alt="An image depicting the client-server model" />
+    <p><small>Source: geeksforgeeks.org</small></p>
+      
+      <p>In order for the client and the server to 
+      communicate effectively, this request-response flow uses <em>protocols</em>, which determine how communication between the
+      parties is established and processed</p>
+      <p>By far the most common protocol is the Hyperlink Transfer Protocol (HTTP), which serves as the foundation for the entire
+        internet.
+      </p>
+  </section>
+
+  <section class="prose">
+    <h2 id="Communicating-with-http">Communicating with HTTP</h2>
   </section>
 </main>
