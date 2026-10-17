@@ -7,6 +7,8 @@
     <ul class="contents-list">
       <li class="contents-list-item"><a href="#representing-dates">Representing dates</a></li>
       <li class="contents-list-item"><a href="#using-dates-in-javascript">Using dates in JavaScript</a></li>
+      <li class="contents-list-item"><a href="#handling-timezones">Handling timezones</a></li>
+      <li class="contents-list-item"><a href="#formatting-dates">Formatting dates</a></li>
     </ul>
   </div>
 
@@ -15,7 +17,7 @@
   <section class="prose">
     <h2 id="representing-dates">Representing dates</h2>
     <p><code>Date</code> objects in JavaScript are - surprisingly - used to represent points in time. Under the hood
-      a date object just describes a number of milliseconds before or after midnight on January 1st 1970, a moment known
+      a date object just describes a number of milliseconds before or after midnight UTC on January 1st 1970, a moment known
       as the <em>"Unix epoch"</em>.
     </p>
   
@@ -37,12 +39,42 @@
     </p>
 
     <p>Luckily, JavaScript uses 64-bit floats to store Unix time, so you'll never have to worry about your code suddenly breaking.
-      Software developers 270,000 years down the road of course, might curse your lack of foresight. 
+      Software developers 270,000 years down the road, of course, might curse your lack of foresight. 
     </p>
   </section>
 
   <section class="prose">
     <h2 id="using-dates-in-javascript">Using dates in JavaScript</h2>
+    <p>To create a new <code>Date</code> object, use the <code>new Date()</code> constructor:</p>
+    <pre data-src="/pages/dates/code-snippets/newDate.js" class="language-javascript"><code></code></pre>
+    <p>Given no arguments, the resulting <code>Date</code> object will represent the exact time it was instantiated.
+    Instead, either a date string, or a Unix time (in milliseconds) can be passed to the constructor:</p>
+    <pre data-src="/pages/dates/code-snippets/newDateFromStringOrMs.js" class="language-javascript"><code></code></pre>
+    <p>Note that the outputs  are ISO-strings describing a date and time. The <code>z</code> at the
+    very end means that the string is in Coordinated Universal Time (UTC). Modern browsers automatically parse these ISO-strings into
+    into a the client's local timezone</p>
+    <p>The date constructor can also be called with two or more arguments representing the year, month, day, hour, minute, second and millisecond:</p>
+    <pre data-src="/pages/dates/code-snippets/newDateFromArgs.js" class="language-javascript"><code></code></pre>
+    <p>Note here that the month is indexed at 0, meaning that January has a value of <code>0</code>, not <code>1</code></p>
+  </section>
 
+  <section class="prose">
+    <h2 id="handling-timezones">Handling timezones</h2>
+    <p>While Unix time is always in UTC (Coordinated Universal Time), and describes a discrete, unambiguous point in time,
+      when the value of a <code>Date</code> object is parsed in a browser, it is converted to the local timezone of the system the code is running on. If you just want to
+      display a date on the client, it should probably be formatted for the client's timezone, but say you want to
+      save the timestamp of some user action in a database. This should probably be stored in UTC instead, 
+      and any conversion to/from a region-specific timezone can be handled on the client-side. To achieve this, the static
+      <code>Date.now()</code> method can be used to get the current time as a Unix timestamp from the client. Later this can be parsed
+      on another client and displayed in a local timezone:</p>
+      <pre data-src="/pages/dates/code-snippets/toAndFromUnixTime.js" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="formatting-dates">Formatting dates</h2>
+    <p>When displaying the value of a <code>Date</code> object, the default formatting is rarely the
+      desired output. Instead the <code>.toLocaleString()</code> method can be used to format the value according to a locale,
+      with an optional <code>options</code> object for more fine-grain control:</p>
+    <pre data-src="/pages/dates/code-snippets/toLocaleString.js" class="language-javascript"><code></code></pre>
   </section>
 </main>
