@@ -26,15 +26,25 @@
     <img src="/pages/http-basics/images/client-server.webp" alt="An image depicting the client-server model" />
     <p><small>Source: geeksforgeeks.org</small></p>
       
-      <p>In order for the client and the server to 
-      communicate effectively, this request-response flow uses <em>protocols</em>, which determine how communication between the
-      parties is established and processed</p>
-      <p>By far the most common protocol is the Hyperlink Transfer Protocol (HTTP), which serves as the foundation for the entire
-        internet.
-      </p>
+    <p>In order for the client and the server to 
+    communicate effectively, this request-response flow uses <em>protocols</em>, which determine how communication between the
+    parties is established and processed</p>
+    <p>By far the most common protocol is the Hyperlink Transfer Protocol (HTTP), which serves as the foundation for the entire
+      internet.
+    </p>
   </section>
 
   <section class="prose">
     <h2 id="Communicating-with-http">Communicating with HTTP</h2>
+    <p>When making an HTTP request to a URL, the client defines an HTTP-method, which is a semantic indication of the kind of operation
+      that is desired. Most common is the <code>GET</code> method, which communicates the intent of fetching some kind of data.
+      Every time you click a link or refresh a tab in your browser, a <code>GET</code> request is sent in order to the fetch the data required
+      for it to render the page you want. To see this in action, navigate to the 'network' tab of your browser dev-tools, and refresh this page.
+    </p>
+    <p>Now you'll see a whole host of (hopefully) successful <code>GET</code> requests that your browser made, in order to fetch the HTML, CSS, images, fonts and scripts
+      necessary to render this page:
+    </p>
+    <img src="/pages/http-basics/images/browser-get-requests.png" alt="A screenshot of the browser dev-tools showing successful GET-requests" />
+    <p>There are other HTTP-methods </p>
   </section>
 </main>
