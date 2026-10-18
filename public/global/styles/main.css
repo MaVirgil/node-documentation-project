@@ -93,7 +93,7 @@ a:hover {
 
 main {
   flex: 1;
-  margin-bottom: var(--gap-small);
+  margin-bottom: var(--gap-medium);
 }
 
 footer {
