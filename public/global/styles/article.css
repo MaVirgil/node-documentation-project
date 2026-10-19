@@ -36,4 +36,16 @@ img {
   small {
     color: var(--text-color-muted);
   }
+
+  table, th, td {
+    border: 2px solid var(--bg-element-color);
+  }
+
+  th, td {
+    padding: 1em 0.5em;
+  }
+   
+  table {
+    border-collapse: collapse;
+  }
 }
