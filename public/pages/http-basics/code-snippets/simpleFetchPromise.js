@@ -1,6 +1,6 @@
 const url = 'https://example.org/api/items';
 
-// Make asynchronous POST-request using promises
+// Make asynchronous POST-request using promise.then()
 fetch(url, {
   method: 'POST',
   headers: {
