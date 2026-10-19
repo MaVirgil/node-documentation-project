@@ -15,11 +15,11 @@
 
   <section class="prose">
     <h2 id="client-server-model">The client-server model</h2>
-    <p>The client-server model describes the fundamental mechanism behind the communication and data flow
+    <p>The client-server model describes one of the fundamental mechanisms behind the communication and data flow
       of distributed systems. In a client-server relationship, the client reaches out with a <em>request</em>
       to a server, which processes the request and sends back a <em>response</em>. The most common example of the
-      client-server dichotomy is the relationship between the web browser as the client, and the backend system that serves
-      the webpage content as the server. In reality, most of the servers in such relationships, are themselves clients in
+      client-server relationship, is that between the web browser as the client, and the backend system that serves
+      the webpage content as the server. In reality, many of the servers in such relationships are themselves clients in
       other relationships, made so by the fact that they might fetch external data from an API,
       or even be part of a microservice architecture.
     </p>
@@ -29,9 +29,9 @@
       
     <p>In order for the client and the server to 
     communicate effectively, this request-response flow uses <em>protocols</em>, which determine how communication between the
-    parties is established and processed</p>
-    <p>By far the most common protocol is the Hyperlink Transfer Protocol (HTTP), which serves as the foundation for the entire
-      internet.
+    parties is established and processed.</p>
+    <p>By far the most common protocol is the HyperText Transfer Protocol (HTTP), which serves as the foundation for the entire
+      web.
     </p>
   </section>
 
@@ -39,18 +39,18 @@
     <h2 id="communicating-with-http">Communicating with HTTP</h2>
     <p>When making an HTTP request to a URL, the client defines an HTTP-method, which is a semantic indication of the kind of operation
       that is desired. Most common is the <code>GET</code> method, which communicates the intent of fetching some kind of data.
-      Every time you click a link or refresh a tab in your browser, a <code>GET</code> request is sent in order to the fetch the data required
+      Every time you click a link or refresh a tab in your browser, a <code>GET</code> request is sent in order to fetch the data required
       for it to render the page you want. To see this in action, navigate to the 'network' tab of your browser dev-tools, and refresh this page.
     </p>
     <p>Now you'll see a whole host of (hopefully) successful <code>GET</code> requests that your browser made, in order to fetch the HTML, CSS, images, fonts and scripts
       necessary to render this page:
     </p>
     <img src="/pages/http-basics/images/browser-get-requests.png" alt="A screenshot of the browser dev-tools showing successful GET-requests" />
-    <p>Outside of the <code>GET</code> method used to fetch data, the most common HTTP-methods includ <code>POST</code>,
-      <code>PUT</code>, <code>PATH</code> and <code>DELETE</code>.
-      As mentioned before, these methods carry only semantic meaning, and it is up to the server how they are interpreted.
-      Due to this, there is not absolute conensus as to the precise
-    meaning and proper usage of some these methods, but the generally accepted use-case for each is as follows:</p>
+    <p>Outside of the <code>GET</code> method used to fetch data, the most common HTTP-methods include <code>POST</code>,
+      <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code>.
+      As mentioned before, these methods <em>mostly</em> carry a semantic meaning, and it is up to the server how they are interpreted.
+      Due to this, there is - for example - no absolute consensus as to the precise 
+      meaning and difference between <code>PUT</code>, <code>PATCH</code> and <code>POST</code>, but the generally accepted use-case for each is as follows:</p>
     <table>
       <thead>
         <tr>
@@ -61,7 +61,7 @@
       <tbody>
         <tr>
           <td>GET</td>
-          <td>Fetch Data</td>
+          <td>Fetch data</td>
         </tr>
         <tr>
           <td>POST</td>
@@ -91,8 +91,8 @@
     object like so. In the below example a <code>POST</code>-request is made:</p>
     <pre data-src="/pages/http-basics/code-snippets/simpleFetchPost.js" class="language-javascript"><code></code></pre>
     <p>Note that the above examples use the more modern <code>async/await</code> syntax, instead of the older
-    <code>promise</code>-system. Under the hood, these two systems are fundamentally the same, and both use <code>promise</code> objects,
-    for many people the modern <code>async/await</code> syntax makes for more readable code. Below is an example of the same
+    <code>promise.then()</code>-system. Under the hood, these two systems are fundamentally the same, and both use <code>promise</code> objects.
+    For many people the modern <code>async/await</code> syntax makes for more readable code. Below is an example of the same
     <code>POST</code>-request as before, but written using the promise-syntax:</p>
     <pre data-src="/pages/http-basics/code-snippets/simpleFetchPromise.js" class="language-javascript"><code></code></pre>
   </section>
