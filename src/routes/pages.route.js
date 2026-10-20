@@ -35,4 +35,8 @@ router.get('/http-basics', (req, res) => {
   res.send(pages.httpBasics.render());
 });
 
+router.get('/designing-rest-api', (req, res) => {
+  res.send(pages.restAPI.render());
+});
+
 export default router;

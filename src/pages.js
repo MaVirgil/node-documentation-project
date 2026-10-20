@@ -70,6 +70,13 @@ const httpBasics = proseTemplate
     title: 'Node So Far | HTTP basics',
   });
 
+const restAPI = proseTemplate
+  .withFragment(`${viewsPath}/fragments/rest-api.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Designing a REST API',
+  });
+
 export const pages = {
   frontPage,
   nodeBasics,
@@ -79,4 +86,5 @@ export const pages = {
   devTools,
   dates,
   httpBasics,
+  restAPI,
 };
