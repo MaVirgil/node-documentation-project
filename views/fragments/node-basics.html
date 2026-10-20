@@ -68,7 +68,10 @@
       control over some dependency, and uses it to spread malicious code downstream - you may have heard of the widespread
       <a href="https://www.elastic.co/security-labs/threat-command/shai-hulud-chaindrop-npm-supply-chain">Shai-Hulud
         worm</a> which compromised over 400 node packages in 2026.</p>
-    <p>Another thing to consider is that an over-reliance on dependencies (especially smaller utility packages), can rob you
+    <p>It is, of course, totally legitimate to use some dependencies in your project,
+      and there are many cases in which implementing a piece of functionality yourself would represent immense scope creep,
+      one should just be mindful that there <em>are</em> very real trade-offs to doing so. 
+      A last thing to consider, is that an over-reliance on dependencies (especially smaller utility packages), can rob you
       of great learning opportunities. There can obviously be many reasons to work on a project, but if a primary goal is to
       become better at writing code, it might be worth trying to implement some functionality or tool yourself, even if a
       ready-made and well-tested solution already exists.</p>
