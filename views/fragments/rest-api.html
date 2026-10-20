@@ -1,10 +1,11 @@
 <main>
+
     {!{backButton}!}
 
   <div class="contents-container">
     <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#what-is-a-rest-API">What is a REST API</a></li>
+      <li class="contents-list-item"><a href="#what-is-a-rest-api">What is a REST API</a></li>
       <li class="contents-list-item"><a href="#designing-endpoints">Designing endpoints</a></li>
     </ul>
   </div>
@@ -12,19 +13,19 @@
   <hr>
 
   <section class="prose">
-    <h2 id="what-is-a-rest-API">What is a REST API</h2>
+    <h2 id="what-is-a-rest-api">What is a REST API</h2>
     <p>A REST API is a stateless web-based API used to store, fetch and manipulate data, usually - but not necessarily - in connection with
-      the CRUD functionality of an application. Many publically available REST APIs exist to serve data from some large dataset. Examples include
-      <a href="https://www.themoviedb.org/" target="_blank">The Movie Database</a> and <a href="https://openweathermap.org/API">Open Weather</a>.
+      the CRUD functionality of an application. Many publicly available REST APIs exist to serve data from some large dataset. Examples include
+      <a href="https://www.themoviedb.org/" target="_blank">The Movie Database</a> and <a href="https://openweathermap.org/api">Open Weather</a>.
     </p>
-    <p>Public APIs like these usually only expose <code>GET</code> routes, but it is also very common to expose the backend functionality of an application
-    through a closed API, enabling the full range HTTP-based CRUD functionality. These proprietary services will usually protect the majority of
-    routes through authorization and authentication, only exposing basic functionlity like registering and logging in/out on unprotected routes</p>
+    <p>Public APIs like these usually mainly expose <code>GET</code> routes, but it is also very common to expose the backend functionality of an application
+    through a closed API, enabling the full range of HTTP-based CRUD functionality. These proprietary services will usually protect the majority of
+    routes through authorization and authentication, only exposing basic functionality like registering and logging in/out on unprotected routes.</p>
   </section>
 
   <section class="prose">
     <h2 id="designing-endpoints">Designing endpoints</h2>
-    <p>Say we were to design a small API enabling CRUD-operations on a smaller dataset of some kind, in this example we
+    <p>Say we were to design a small API enabling CRUD-operations on a smaller dataset of some kind. In this example we
       will use movies.
       We will not be worrying about the actual implementation of the code, but instead focus on the design of the routes -
       that is, which
@@ -32,21 +33,29 @@
     </p>
     <p>
       A REST API design works by defining a specific action with a <em>verb</em> + a <em>noun</em>. The verb comes from
-      the HTTP-method of the
-      the request, and the noun is specified in the URL (the resource locator). This means that when designing endpoints,
+      the HTTP-method of the request, and the noun is specified in the URL (the resource locator). This means that when
+      designing endpoints,
       one should avoid using
-      verbs at all, instead an endpoint should define some resource. In our movie example the first obvious endpoint might
-      therefore be
+      verbs at all, instead an endpoint should define some resource.
+    </p>
+    <p>
+      <em>Note:</em> the previously mentioned login/logout endpoints contradict this rule,
+      and strictly speaking these do not fit into a REST api at all. These functinalities could be split into their own backend service or renamed
+      to follow the REST-conventions, but most often these are the expected endpoint names, even in REST services.
+    <p>
+      Back to our movie API: the first obvious endpoint might be
       <code>https://ourmovieapi.com/movies</code>. Now if a client wants to retrieve a list of all movies in our system,
       they can make a request
-      to our endpoint using the <code>GET</code> method. Conversely if they want to add a new movie to our database they
+      to our endpoint using the <code>GET</code> method, and the API returns an HTTP-status code and some data (typically in
+      the form of JSON).
+      Conversely if they want to add a new movie to our database they
       can do a <code>POST</code>
       request to the same endpoint, defining the data in the body of the HTTP-request.
     </p>
     <p>
       So what happens if a client has the <code>ID</code> of a specific movie, and wants to fetch all the data related to
       that movie?
-      In this case we can define a <em>path variable</em> on our endpoint in order to target a single resource in our
+      In this case we can define a <em>route parameter</em> (sometimes also referred to as a <em>path variable</em>) on our endpoint in order to target a single resource in our
       dataset.
       Now, the client can make a <code>GET</code> request on the endpoint <code>https://ourmovieapi.com/movies/{id}</code>
       to fetch a single movie instead
@@ -102,19 +111,19 @@
     <p>There are of course, ways to make an API even more useful to the client: Right now they can either a) fetch every single movie
       in our dataset, or b) fetch a single movie, provided they know the id of the resource. Depending on the expected use of the API, we 
       might consider implementing some sort of search functionality or filter, to provide a middle ground between these two ways of finding resources.
-      A common way to achieve this is by using <em>query parameters</em>, which consist of key-value pairs defined when hitting and endpoint. One choice is
+      A common way to achieve this is by using <em>query parameters</em>, which consist of key-value pairs defined after a <code>?</code> in the URL when hitting an endpoint. One choice is
       to create a fully-fledged search functionality based on the title of the movie, and to then accept a query parameter on the <code>GET</code>-route like so:
       <code>https://ourmovieapi.com/movies?q=&lt;some-search-string&gt;</code>.
     </p>
     <p>
       Considering that we probably have more data on a movie than just a title, we might instead decide to implement some basic filtering: We can take a few optional parameters like 
-      <code>genre</code>, <code>rating</code> and <code>release-year</code>. Now it is possible for a client to build a request that does a pretty good job at filtering down our big dataset.
+      <code>genre</code>, <code>rating</code> and <code>release-year</code>. Now it is possible for a client to build a request that does a good job at basic filtering of our big dataset.
       One might look at comedy movies from 2010 with the following <code>GET</code>-request: <code>https://ourmovieapi.com/movies?genre=comedy&release-year=2010</code>. Now the client
       can do the same for the year 2020, and do a comparative analysis on the average rating, the budget or the box office numbers.
     </p>
     <p>
       Just by implementing basic filtering we have enabled our REST
-      api to be used for a whole host of useful and creative application outside of the basic CRUD-operations defined originally.
+      API to be used for a whole host of useful and creative applications outside of the basic CRUD-operations defined originally.
     </p>
   </section>
 </main>
