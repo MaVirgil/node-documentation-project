@@ -11,6 +11,7 @@
       <li class="contents-list-item"><a href="#equality-operators">Equality operators</a></li>
       <li class="contents-list-item"><a href="#variables">Variables</a></li>
       <li class="contents-list-item"><a href="#logical-short-circuting">Logical short-circuting</a></li>
+      <li class="contents-list-item"><a href="#module-imports">Using module imports</a></li>
     </ul>
   </div>
 
@@ -175,6 +176,29 @@
       with numbers, where <code>0</code> is a valid value, but would evaluate to <code>false</code> using the
       <code>||</code> operator:</p>
     <pre data-src="/pages/javascript-introduction/code-snippets/nullishCoalescing.js"
+      class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="module-imports">Using module imports</h2>
+    <p>
+      When importing and loading code from JavaScript modules, the old way (and still default, for a new project) is by
+      the <em>CommonJS</em> system using the <code>require()</code> syntax.
+      The newer system is called <em>ES Modules</em>, and uses the <code>import</code> and <code>export</code>
+      keywords. Below is an example of how a module can export a value,
+      and how it can be imported in another module, using CommonJS:
+    </p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/import-export-cjs.js"
+      class="language-javascript"><code></code></pre>
+    <p>
+      The more modern ES Module system, which is usually recommended, uses the following syntax:
+    </p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/import-export-esm.js"
+      class="language-javascript"><code></code></pre>
+    <p>
+      In order to use ES Modules, you can declare <code>"type": "module"</code> in your <code>package.json</code>:
+    </p>
+    <pre data-src="/pages/javascript-introduction/code-snippets/es-module-package.json"
       class="language-javascript"><code></code></pre>
   </section>
 
