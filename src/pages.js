@@ -77,6 +77,14 @@ const restAPI = proseTemplate
     title: 'Node So Far | Designing a REST API',
   });
 
+const webAppWithExpress = proseTemplate
+  .withFragment(`${viewsPath}/fragments/web-app-express.html`, 'content')
+  .withFragment(`${viewsPath}/fragments/components/backButton.html`, 'backButton')
+  .withProps({
+    title: 'Node So Far | Creating a web app with Express.js',
+  });
+
+
 export const pages = {
   frontPage,
   nodeBasics,
@@ -87,4 +95,5 @@ export const pages = {
   dates,
   httpBasics,
   restAPI,
+  webAppWithExpress,
 };

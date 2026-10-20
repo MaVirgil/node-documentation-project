@@ -39,4 +39,8 @@ router.get('/designing-rest-api', (req, res) => {
   res.send(pages.restAPI.render());
 });
 
+router.get('/web-app-with-express', (req, res) => {
+  res.send(pages.webAppWithExpress.render());
+});
+
 export default router;
