@@ -5,14 +5,113 @@
   <div class="contents-container">
     <h2 class="contents-header">contents</h2>
     <ul class="contents-list">
-      <li class="contents-list-item"><a href="#what-is-a-rest-API">What is a REST API</a></li>
-      <li class="contents-list-item"><a href="#designing-endpoints">Designing endpoints</a></li>
+      <li class="contents-list-item"><a href="#express-js">Express.js</a></li>
+      <li class="contents-list-item"><a href="#setting-up-a-server">Setting up a server</a></li>
+      <li class="contents-list-item"><a href="#defining-a-route">Defining API-routes</a></li>
+      <li class="contents-list-item"><a href="#route-and-query-parameters">Using route and query parameters</a></li>
+      <li class="contents-list-item"><a href="#serving-html-pages">Serving HTML-pages</a></li>
+      <li class="contents-list-item"><a href="#serving-static-files">Serving static files</a></li>
+
     </ul>
   </div>
 
   <hr>
 
   <section class="prose">
-    
+    <h2 id="express-js">Express.js</h2>
+    <p>
+      <a href="https://expressjs.com/" target="_blank">Express.js</a> is a Node.js framework used to develop web-based 
+      applications. Compared to bigger frameworks like Spring or ASP.NET, Express feels very minimalist and simple to approach,
+      with little to no boilerplate code needed to get a basic server up and running.
+    </p>
+    <p>On this page we will create a small express server, serving an HTML-page and exposing some API endpoints using placeholder data.</p>
+  </section>
+
+  <section class="prose">
+    <h2 id="setting-up-a-server">Setting up a server</h2>
+    <p>On a fresh Node.js project, run the command <code>npm install express</code> to declare and install
+    the Express framework as a dependency. Alternatively we can manually declare Express as a dependency, and run <code>npm install</code>, either way works fine.
+    Lastly add <code>"type": "module"</code> to your package.json, to use the ESmodule import syntax seen in the examples on this page.
+    </p>
+    <p>
+      Now we are ready to create our main JavaScript file, which we will call <code>app.js</code>. In it we can import express and use the <code>express()</code> function to get our app object:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressSetupA.js" class="language-javascript"><code></code></pre>
+    <p>
+      Now we will define a port and make our app listen on that port while passing a callback function to ensure we get notified in the console when the app
+      has either successfully started, or failed to do so:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressSetupB.js" class="language-javascript"><code></code></pre>
+    <p>
+      Now when we run the app with <code>node app.js</code>, we should see the following message in the console: <code>App listening on port 8080</code>,
+      and <em>that</em> is all the "boilerplate" needed to get a server up and running.
+    </p>
+  </section>
+
+  <section class="prose">
+    <h2 id="defining-a-route">Defining a route</h2>
+    <p>
+      Let's start by defining an API route to serve some dummy data on a <code>GET</code>-request. In this case we will imagine that we have
+      some dataset consisting of different models of aeroplane, and that we are accesing it through <code>planeService</code> in our app.
+    </p>
+    <p>Let's define the route for <code>GET</code>-requests on the endpoint <code>/planes</code>:</p>
+    <pre data-src="/pages/web-app-express/code-snippets/simpleGetRoute.js" class="language-javascript"><code></code></pre>
+    <p>Notice that we use the <code>.get()</code> method of the <code>app</code> object to define a GET-route. We pass a callback function which takes two
+      arguments: the client request, and our server's response. With <code>res.send()</code> we define what is sent back as a response to the request.
+    </p>
+    <p>
+      If we wanted to define a <code>POST</code>-request route for the same endpoint, we would use the <code>app.post()</code> method instead. As opposed to 
+      the above example however, this time we would need to retrieve the body of the request like so:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/simplePostRoute.js" class="language-javascript"><code></code></pre>
+    <p>Note that we are not doing any error handling or input-validation in these examples, which would obviously make our little app very fragile. The above example will in fact
+      not work, due to Express not being able to parse JSON request bodies by default. Luckily this is easily fixed by adding a line to the top of our <code>app.js</code> file:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressUseJson.js" class="language-javascript"><code></code></pre>
+    <p>Now are recieving and reading the client's request, and from here defining the behaviour of our API is mostly just a question of standard JavaScript logic.</p>
+  </section>
+
+  <section class="prose">
+    <h2 id="route-and-query-parameters">Using route and query parameters</h2>
+    <p>
+      Say we want to define a route for fetching a plane by a specific id. This can be done using Express's route parameters, defined with syntax <code>/resource/:&lt;routeParam&gt;</code>.
+      Using this, our route for <code>/planes/{id}</code> might be defined like so:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressRouteParams.js" class="language-javascript"><code></code></pre>
+    <p><em>note:</em> Query parameters are always strings, so if our service expects the id to be of the <code>Number</code> type (and it probably should), we need to convert the value before passing it.</p>
+    <p>
+      similiarly we can extract optional query parameters from the request. Say we want to be able filter by amount of engines by hitting a URL like <code>/planes?engineCount=4</code>:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressQueryParam.js" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="serving-html-pages">Serving HTML-pages</h2>
+    <p>
+      Say we want to serve an HTML front page on our application. Again, we define a <code>GET</code>-route, but instead of using the <code>res.send()</code>
+      method, we use <code>res.sendFile()</code> instead. This method takes a absolute path as its first argument, so we need to define that before serving.
+      Let's imagine our project root where <code>app.js</code> runs from has a directory called <code>pages</code> with <code>frontpage.html</code>. Now
+      we can define the absolute path pointing to that file using Node's built-in <code>path</code> module, and serve it in a route:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressServeHtml.js" class="language-javascript"><code></code></pre>
+  </section>
+
+  <section class="prose">
+    <h2 id="serving-static-files">Serving static files</h2>
+    <p>
+      Now we've served an HTML page, but we might want to give that page some style with a CSS file, and maybe even some dynamic behaviour with a script.
+      If we point to an external CSS file in the head of our HTML, the client will not be able to fetch it, because we are not serving that file
+      (in the example above, we are only serving the HTML-file). To fix this we can define a directory of <em>static</em> files, where we can store assets like
+      favicons, images, scripts and stylesheets.
+    </p>
+    <p>
+      Let's make a folder in our project root called <code>public</code>, and make a folder inside called <code>style</code>. In there we can put the stylesheet that we want to use
+      on our HTML-page. so from the project root we have: <code>/public/style/frontpage.css</code>, which we now serve in <code>app.js</code>:
+    </p>
+    <pre data-src="/pages/web-app-express/code-snippets/expressServeStatic.js" class="language-javascript"><code></code></pre>
+    <p>Now our stylesheet will be available at <code>/style/frontpage.css</code>, and we can use it in the head of our HTML-page like so: 
+      <code>&lt;link rel="stylesheet" href="/style/frontpage.css"/&gt;</code>
+    </p>
+    <p>Now we have all the building blocks needed to write a simple web-app with a front-end and backend API routes using Express.</p>
   </section>
 </main>
