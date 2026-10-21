@@ -54,13 +54,13 @@
       but should not be present in the source files. To pass environment variables to a node application, declare
       them before the <code>node</code> command when running your application: <code>MY_SECRET=123 node app.js</code>,
       and now you can access the environment variable(s) using <code>process.env</code> in your code:
-    <pre data-src="/pages/dev-tools/code-snippets/environmentVariables.js" class="language-javascript"><code></code></pre></p>
+    <pre data-src="/assets/dev-tools/code-snippets/environmentVariables.js" class="language-javascript"><code></code></pre></p>
     <p>Having to remember all your environment variables and writing them manually to even start your application is obviously not
       optimal, which is where you might choose to use a package like <a href="https://www.dotenv.org/" target="_blank">dotenv</a>,
       which automatically scans for a <code>.env</code> file in your project root, and loads the key-value pairs into the 
       process environment. Then you can simply import <code>dotenv/config</code> at the top of your module, and every environment variable in the <code>.env</code>
       file will be accessible through <code>process.env</code>, no matter how you run your application:</p>
-    <pre data-src="/pages/dev-tools/code-snippets/dotenvExample.js" class="language-javascript"><code></code></pre></p>
+    <pre data-src="/assets/dev-tools/code-snippets/dotenvExample.js" class="language-javascript"><code></code></pre></p>
     <p>Just <strong>remember to add your .env file to your <code>.gitignore</code>!</strong> so you don't leak all your API keys.</p>
   </section>
 
@@ -74,7 +74,7 @@
       <code>npm run &lt;script-name&gt;</code>. Say we just have a single environment variable in our project - the port that our application should run on -
       and we don't want to install dotenv, and add a <code>.env</code> file to our project just for a small 4-digit variable. Instead we can define a
       run-script that automatically sets the port to 8080 when we run it:</p>
-    <pre data-src="/pages/dev-tools/code-snippets/nodeRunScriptExample.json" class="language-javascript"><code></code></pre></p>
+    <pre data-src="/assets/dev-tools/code-snippets/nodeRunScriptExample.json" class="language-javascript"><code></code></pre></p>
     <p>Now if we run <code>npm run dev</code>, our application will have access to the <code>PORT</code> variable at runtime.</p>
   </section>
 </main>

@@ -16,7 +16,7 @@ const proseTemplate = baseTemplate
 
 const frontPage = baseTemplate
   .withFragment(`${viewsPath}/fragments/content/frontpage.html`, 'content')
-  .withStylesheet('/pages/frontpage/style/frontpage.css')
+  .withStylesheet('/assets/frontpage/style/frontpage.css')
   .withProps({
     title: 'Node So Far',
   });

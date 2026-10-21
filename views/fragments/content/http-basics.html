@@ -24,7 +24,7 @@
       or even be part of a microservice architecture.
     </p>
 
-    <img src="/pages/http-basics/images/client-server.webp" alt="An image depicting the client-server model" />
+    <img src="/assets/http-basics/images/client-server.webp" alt="An image depicting the client-server model" />
     <p><small>Source: geeksforgeeks.org</small></p>
       
     <p>In order for the client and the server to 
@@ -45,7 +45,7 @@
     <p>Now you'll see a whole host of (hopefully) successful <code>GET</code> requests that your browser made, in order to fetch the HTML, CSS, images, fonts and scripts
       necessary to render this page:
     </p>
-    <img src="/pages/http-basics/images/browser-get-requests.png" alt="A screenshot of the browser dev-tools showing successful GET-requests" />
+    <img src="/assets/http-basics/images/browser-get-requests.png" alt="A screenshot of the browser dev-tools showing successful GET-requests" />
     <p>Outside of the <code>GET</code> method used to fetch data, the most common HTTP-methods include <code>POST</code>,
       <code>PUT</code>, <code>PATCH</code> and <code>DELETE</code>.
       As mentioned before, these methods <em>mostly</em> carry a semantic meaning, and it is up to the server how they are interpreted.
@@ -86,14 +86,14 @@
   <section class="prose">
     <h2 id="requests-with-javascript">Making requests with JavaScript</h2>
     <p>You can easily make an HTTP-request with JavaScript using the built-in <code>fetch()</code> function:</p>
-    <pre data-src="/pages/http-basics/code-snippets/simpleFetch.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/http-basics/code-snippets/simpleFetch.js" class="language-javascript"><code></code></pre>
     <p>It is also possible to make other HTTP-requests, by providing the <code>fetch()</code> call with an <code>options</code>
     object like so. In the below example a <code>POST</code>-request is made:</p>
-    <pre data-src="/pages/http-basics/code-snippets/simpleFetchPost.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/http-basics/code-snippets/simpleFetchPost.js" class="language-javascript"><code></code></pre>
     <p>Note that the above examples use the more modern <code>async/await</code> syntax, instead of the older
     <code>promise.then()</code> syntax. Under the hood, these two systems are fundamentally the same, and both use promises.
     For many people the modern <code>async/await</code> syntax makes for more readable code. Below is an example of the same
     <code>POST</code>-request as before, but written using the <code>promise.then()</code> syntax:</p>
-    <pre data-src="/pages/http-basics/code-snippets/simpleFetchPromise.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/http-basics/code-snippets/simpleFetchPromise.js" class="language-javascript"><code></code></pre>
   </section>
 </main>

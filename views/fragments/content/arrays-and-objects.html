@@ -18,7 +18,7 @@
     <h2 id="arrays-in-javascript">Arrays in JavaScript</h2>
     <p>Contrary to languages like C++ and Java, arrays in JavaScript are dynamically sized and can contain values of
       multiple types in the same array:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayDynamicSize.js"
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arrayDynamicSize.js"
       class="language-javascript"><code></code></pre>
   </section>
   
@@ -39,7 +39,7 @@
     <p><code>arr.at(index)</code> returns the element at the given index. Can also be used to find an element
       <code>n</code> indices from the end of the array:
     </p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayAt.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arrayAt.js" class="language-javascript"><code></code></pre>
     <p>Note that searching from the back of the array is not 0-indexed,
       and thus <code>arr.at(-1)</code> returns the very last element in the array.</p>
   
@@ -54,7 +54,7 @@
     <h4>splice()</h4>
     <p><code>arr.splice(start, deleteCount, ...elements)</code> is used to insert, remove or replace a number of elements
       at specific indices in an array:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arraySplice.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arraySplice.js" class="language-javascript"><code></code></pre>
   
     <h4>slice()</h4>
     <p><code>arr.slice(start, end)</code> returns a subsection of an existing array starting at the index
@@ -75,18 +75,18 @@
       element without transforming any of the values. A classic example is printing every element separately to the
       console:
     </p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayForEach.js"
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arrayForEach.js"
       class="language-javascript"><code></code></pre>
   
     <h4 id="filter-">filter()</h4>
     <p><code>arr.filter(function)</code> returns a new array of items that evaluate to <code>true</code> given a boolean
       predicate:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayFilter.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arrayFilter.js" class="language-javascript"><code></code></pre>
   
     <h4 id="map-">map()</h4>
     <p><code>arr.map(function)</code> returns a new array of the same size, where every element has been transformed by
       the supplied callback function:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayMap.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arrayMap.js" class="language-javascript"><code></code></pre>
   
     <h4 id="reduce-">reduce()</h4>
     <p><code>arr.reduce(function)</code> is used to reduce an array down to a single value. It takes a callback function
@@ -95,22 +95,22 @@
       argument.</p>
     <p>A simple example of the <code>reduce()</code> function is to show how it can be used to find the sum of an array of
       numbers:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/arrayReduce.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/arrayReduce.js" class="language-javascript"><code></code></pre>
   </section>
 
   <section class="prose">
     <h2 id="objects">Objects</h2>
     <p>An object in JavaScript is composed of key-value pairs, which can contain any data type:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/objectBasicDeclaration.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/objectBasicDeclaration.js" class="language-javascript"><code></code></pre>
     <p>The values in an object - the object's <em>fields</em> - can then naturally be accessed with the <code>.</code> operator
     like in any other language, but because the fields are simply key-value pairs, they can also be accessed with bracket notation <code>[]</code>:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/objectFieldAccess.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/objectFieldAccess.js" class="language-javascript"><code></code></pre>
     <p>Fields in JavaScript objects are more loosely defined than in languages like Java, and an object's fields
       can freely be removed or added at runtime:
     </p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/objectAddRemoveFields.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/objectAddRemoveFields.js" class="language-javascript"><code></code></pre>
     <p>With object destructuring it is also possible to retrieve one or more values from an object with very simple syntax:</p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/objectDestructuring.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/objectDestructuring.js" class="language-javascript"><code></code></pre>
   </section>
 
   <section class="prose">
@@ -118,11 +118,11 @@
     <p>If you try to access a field of <code>undefined</code>, you will not get back the value <code>undefined</code>,
       instead your code will crash with a <code>TypeError</code>:
     </p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/objectFieldOfNonExistentField.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/objectFieldOfNonExistentField.js" class="language-javascript"><code></code></pre>
     <p>If we want to access some property of a field which we are not certain will be present, we can use the Optional
       property access operator <code>?.</code>, which will resolve to <code>undefined</code> if the field we are reading from
       does not exist:
     </p>
-    <pre data-src="/pages/arrays-and-objects/code-snippets/objectOptionalPropertyAccess.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/arrays-and-objects/code-snippets/objectOptionalPropertyAccess.js" class="language-javascript"><code></code></pre>
   </section>
 </main>

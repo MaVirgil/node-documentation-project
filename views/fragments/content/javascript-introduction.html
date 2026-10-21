@@ -54,7 +54,7 @@
       <code>&#39;single quotes&#39;</code>. A so-called <em>template literal</em> can also be declared with
       <code>`backtics`</code>, allowing you to embed values directly into the string:
     </p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/stringLiteral.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/stringLiteral.js"
       class="language-javascript"><code></code></pre>
   
     <h4 id="boolean">Boolean</h4>
@@ -81,7 +81,7 @@
     <h2 id="type-coercion">Type coercion</h2>
     <p>As mentioned in the overview, JavaScript accepts many operations and expressions you would not normally see in
       statically typed languages like Java:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/coercionExample.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/coercionExample.js"
       class="language-javascript"><code></code></pre>
     <p>Given the above examples, one might expect the expression <code>10 + &#39;5&#39;</code> to evaluate to
       <code>15</code>, but this is where some of those &quot;quirks&quot; of coercion come in: The <code>+</code> operator
@@ -93,7 +93,7 @@
         String.</em></p>
     <p>This results in the previously stated expression evaluating like so:</p>
   
-    <pre data-src="/pages/javascript-introduction/code-snippets/stringAdditionExample.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/stringAdditionExample.js"
       class="language-javascript"><code></code></pre>
 
     <p>This is one of those examples that may seem completely crazy to someone coming from a stricter language, but in
@@ -117,7 +117,7 @@
       called the <em>&quot;loose equality operator&quot;</em>.</p>
     <p>To compare two values without coercion, you can use the <em>&quot;strict equality operator&quot;</em> <code>===</code>
       instead, which performs an equality check of both type <em>and</em> value:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/strictEquality.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/strictEquality.js"
       class="language-javascript"><code></code></pre>
   </section>
 
@@ -129,14 +129,14 @@
       variable declared with <code>var</code> is re-declarable, re-assignable and exists in <em>function scope</em>
       (notably different
       from block scope), which leads to some at-times pretty undesirable behaviour:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/varExample.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/varExample.js"
       class="language-javascript"><code></code></pre>
   
     <p>Another less fortunate feature of <code>var</code> variables is that they are hoisted <em>and</em> initialized as
       <code>undefined</code>, which means that they are accessible without error before they are declared in the code, but
       their value will always be <code>undefined</code>:
     </p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/varExampleHoisting.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/varExampleHoisting.js"
       class="language-javascript"><code></code></pre>
     <p>Due to these behaviours two new variable keywords were introduced in 2015, and since then, the usage of the
       <code>var</code> keyword has generally been discouraged in favor of the two alternatives.
@@ -145,15 +145,15 @@
     <h4 id="let">let</h4>
     <p>Variables declared with <code>let</code> are re-assignable like <code>var</code>, but exist in block scope as
       opposed to function scope:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/letScopeExample.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/letScopeExample.js"
       class="language-javascript"><code></code></pre>
     <p><code>let</code> variables are also hoisted, but <em>not</em> initialized, leading to a more explicit error when
       used before their declaration:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/letHoistingExample.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/letHoistingExample.js"
       class="language-javascript"><code></code></pre>
     <h4 id="const">const</h4>
     <p><code>const</code> variables are block scoped like <code>let</code>, but are constants, and cannot be reassigned:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/constReassignmentExample.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/constReassignmentExample.js"
       class="language-javascript"><code></code></pre>
   </section>
 
@@ -162,11 +162,11 @@
     <p>The logical operator OR <code>||</code> used in an expression automatically converts the leftmost value into a
       boolean, and returns either the left or right value depending on whether or not the boolean evaluated to
       <code>true</code> or <code>false</code>:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitOR.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/shortCircuitOR.js"
       class="language-javascript"><code></code></pre>
 
     <p>This can be useful when defining fallback values to use in case the original value is falsey:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/shortCircuitFallback.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/shortCircuitFallback.js"
       class="language-javascript"><code></code></pre>
     <p>Inversely, the AND operator <code>&amp;&amp;</code> returns the rightmost value if the leftmost value evaluates to
       <code>true</code>.</p>
@@ -175,7 +175,7 @@
       either <code>undefined</code> or <code>null</code>. This can be useful when defining fallback behaviour for working
       with numbers, where <code>0</code> is a valid value, but would evaluate to <code>false</code> using the
       <code>||</code> operator:</p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/nullishCoalescing.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/nullishCoalescing.js"
       class="language-javascript"><code></code></pre>
   </section>
 
@@ -188,17 +188,17 @@
       keywords. Below is an example of how a module can export a value,
       and how it can be imported in another module, using CommonJS:
     </p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/import-export-cjs.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/import-export-cjs.js"
       class="language-javascript"><code></code></pre>
     <p>
       The more modern ES Module system, which is usually recommended, uses the following syntax:
     </p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/import-export-esm.js"
+    <pre data-src="/assets/javascript-introduction/code-snippets/import-export-esm.js"
       class="language-javascript"><code></code></pre>
     <p>
       In order to use ES Modules, you can declare <code>"type": "module"</code> in your <code>package.json</code>:
     </p>
-    <pre data-src="/pages/javascript-introduction/code-snippets/es-module-package.json"
+    <pre data-src="/assets/javascript-introduction/code-snippets/es-module-package.json"
       class="language-javascript"><code></code></pre>
   </section>
 

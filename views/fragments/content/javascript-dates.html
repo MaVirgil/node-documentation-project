@@ -46,15 +46,15 @@
   <section class="prose">
     <h2 id="using-dates-in-javascript">Using dates in JavaScript</h2>
     <p>To create a new <code>Date</code> object, use the <code>new Date()</code> constructor:</p>
-    <pre data-src="/pages/dates/code-snippets/newDate.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/dates/code-snippets/newDate.js" class="language-javascript"><code></code></pre>
     <p>Given no arguments, the resulting <code>Date</code> object will represent the exact time it was instantiated.
     Instead, either a date string, or a Unix time (in milliseconds) can be passed to the constructor:</p>
-    <pre data-src="/pages/dates/code-snippets/newDateFromStringOrMs.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/dates/code-snippets/newDateFromStringOrMs.js" class="language-javascript"><code></code></pre>
     <p>Note that the outputs  are ISO-strings describing a date and time. The <code>z</code> at the
     very end means that the string is in Coordinated Universal Time (UTC). Modern browsers automatically parse these ISO-strings into
     into a the client's local timezone</p>
     <p>The date constructor can also be called with two or more arguments representing the year, month, day, hour, minute, second and millisecond:</p>
-    <pre data-src="/pages/dates/code-snippets/newDateFromArgs.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/dates/code-snippets/newDateFromArgs.js" class="language-javascript"><code></code></pre>
     <p>Note here that the month is indexed at 0, meaning that January has a value of <code>0</code>, not <code>1</code></p>
   </section>
 
@@ -67,7 +67,7 @@
       and any conversion to/from a region-specific timezone can be handled on the client-side. To achieve this, the static
       <code>Date.now()</code> method can be used to get the current time as a Unix timestamp from the client. Later this can be parsed
       on another client and displayed in a local timezone:</p>
-      <pre data-src="/pages/dates/code-snippets/toAndFromUnixTime.js" class="language-javascript"><code></code></pre>
+      <pre data-src="/assets/dates/code-snippets/toAndFromUnixTime.js" class="language-javascript"><code></code></pre>
   </section>
 
   <section class="prose">
@@ -75,6 +75,6 @@
     <p>When displaying the value of a <code>Date</code> object, the default formatting is rarely the
       desired output. Instead the <code>.toLocaleString()</code> method can be used to format the value according to a locale,
       with an optional <code>options</code> object for more fine-grain control:</p>
-    <pre data-src="/pages/dates/code-snippets/toLocaleString.js" class="language-javascript"><code></code></pre>
+    <pre data-src="/assets/dates/code-snippets/toLocaleString.js" class="language-javascript"><code></code></pre>
   </section>
 </main>
